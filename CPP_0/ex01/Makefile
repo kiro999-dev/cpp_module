@@ -1,7 +1,7 @@
 SRC = Contact.cpp PhoneBook.cpp main.cpp
 NAME = PhoneBook
 CC = c++ -Wall -Wextra -Werror -std=c++98
-INC =  Contact.hpp PhoneBook.hpp main.hpp
+INC =  Contact.hpp PhoneBook.hpp 
 all: $(NAME)
 
 $(NAME): $(SRC) $(INC)
