@@ -1,9 +1,7 @@
 #include "PhoneBook.hpp"
 
-PhoneBook::PhoneBook()
+PhoneBook::PhoneBook():index(0),size(0)
 {
-	index = 0;
-	size = 0;
 }
 int PhoneBook::getIndex()
 {
