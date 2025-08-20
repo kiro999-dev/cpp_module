@@ -40,6 +40,28 @@ Fixed Fixed::operator/(const Fixed &other) const
 {
     return Fixed(this->_fpoint /  other._fpoint);
 }
+Fixed &Fixed::operator++()
+{
+    this->_fpoint += e;
+    return *this;
+}
+Fixed &Fixed::operator--()
+{
+    this->_fpoint -= e;
+    return *this;
+}
+Fixed Fixed::operator++(int)
+{
+   Fixed temp (this->_fpoint);
+   this->_fpoint += e;
+   return temp;
+}
+Fixed Fixed::operator--(int)
+{
+   Fixed temp (this->_fpoint);
+   this->_fpoint -= e;
+   return temp;
+}
 Fixed &Fixed::operator=(const Fixed &other) 
 {
     if(this == &other)
