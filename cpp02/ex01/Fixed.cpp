@@ -24,7 +24,7 @@ Fixed::Fixed(const int intger)
 }
 Fixed::Fixed(const float float_num) 
 {
-    _fpoint = (int)(float_num * (1 << _fracions_bits));
+    _fpoint = roundf(float_num * (1 << _fracions_bits));
      std::cout<<"Float constructor called"<<std::endl;
 }
 Fixed:: Fixed(void)

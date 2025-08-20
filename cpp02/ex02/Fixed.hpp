@@ -1,6 +1,7 @@
 #ifndef FIXED_HPP
 #define FIXED_HPP
 #define e 0.00390625
+#include <cmath>
 #include <iostream>
 
 class Fixed

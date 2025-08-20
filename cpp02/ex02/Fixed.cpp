@@ -4,85 +4,92 @@ Fixed& Fixed::min( Fixed &a,Fixed &b)
 {
     if(a._fpoint > b._fpoint)
         return (b);
+    return (a);
 }
 
 Fixed& Fixed::max( Fixed &a,Fixed &b)
 {
     if(a._fpoint > b._fpoint)
         return (a);
+    return (b);
 }
 
 const Fixed& Fixed::min(const Fixed& a, const Fixed& b)
 {
     if(a._fpoint > b._fpoint)
         return (b);
+    return(a);
 }
 
 const Fixed& Fixed::max(const Fixed& a, const Fixed& b)
 {
     if(a._fpoint > b._fpoint)
         return (a);
+    return (b);
 }
 bool Fixed::operator<(const Fixed &other) const
 {
-    return (this->_fpoint < other._fpoint);
+    return (this->toFloat() <  other.toFloat());
 }
 bool Fixed::operator>(const Fixed &other) const
 {
-    return (this->_fpoint > other._fpoint);
+    return (this->toFloat() >  other.toFloat());
 }
 bool Fixed::operator>=(const Fixed &other) const
 {
-    return (this->_fpoint >= other._fpoint);
+    return (this->toFloat() >= other.toFloat());
 }
 bool Fixed::operator<=(const Fixed &other) const
 {
-    return (this->_fpoint <= other._fpoint);
+    return (this->toFloat() <=  other.toFloat());
 }
 bool Fixed::operator==(const Fixed &other) const
 {
-    return (this->_fpoint == other._fpoint);
+    return (this->toFloat() ==  other.toFloat());
 }
 bool Fixed::operator!=(const Fixed &other) const
 {
-    return (this->_fpoint != other._fpoint);
+    return (this->toFloat() !=  other.toFloat());
 }
 Fixed Fixed::operator+(const Fixed &other) const
 {
-    return Fixed(this->_fpoint + other._fpoint);
+    return Fixed(this->toFloat() +  other.toFloat());
 }
 Fixed Fixed::operator-(const Fixed &other) const
 {
-    return Fixed(this->_fpoint - other._fpoint);
+    return Fixed(this->toFloat() -  other.toFloat());
 }
 Fixed Fixed::operator*(const Fixed &other) const
 {
-    return Fixed(this->_fpoint *  other._fpoint);
+    return Fixed(this->toFloat() *   other.toFloat());
 }
 Fixed Fixed::operator/(const Fixed &other) const
 {
-    return Fixed(this->_fpoint /  other._fpoint);
+    return Fixed(this->toFloat() /   other.toFloat());
 }
 Fixed &Fixed::operator++()
 {
-    this->_fpoint += e;
+    this->_fpoint++;
     return *this;
 }
 Fixed &Fixed::operator--()
 {
-    this->_fpoint -= e;
+
+    this->_fpoint--;
     return *this;
 }
 Fixed Fixed::operator++(int)
 {
-   Fixed temp (this->_fpoint);
-   this->_fpoint += e;
+   Fixed temp;
+   temp._fpoint = _fpoint;
+   this->_fpoint++;
    return temp;
 }
 Fixed Fixed::operator--(int)
 {
-   Fixed temp (this->_fpoint);
-   this->_fpoint -= e;
+   Fixed temp;
+   temp._fpoint = _fpoint;
+   this->_fpoint--;
    return temp;
 }
 Fixed &Fixed::operator=(const Fixed &other) 
@@ -109,11 +116,12 @@ Fixed::Fixed(const int integer)
 }
 Fixed::Fixed(const float float_num) 
 {
-    _fpoint = (int)(float_num * (1 << _fraction_bits));
+    _fpoint = roundf(float_num * (1 << _fraction_bits));
      std::cout<<"Float constructor called"<<std::endl;
 }
 Fixed:: Fixed(void)
 {
+      _fpoint = 0;
       std::cout<<"Default constructor called"<<std::endl;
 }
 

@@ -65,5 +65,7 @@
         "utility": "cpp",
         "vector": "cpp",
         "__functional_03": "cpp"
-    }
+    },
+    "terminal.integrated.defaultProfile.windows": "Ubuntu-24.04 (WSL)",
+
 }
