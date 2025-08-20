@@ -1,5 +1,28 @@
 #include "Fixed.hpp"
 
+Fixed& Fixed::min( Fixed &a,Fixed &b)
+{
+    if(a._fpoint > b._fpoint)
+        return (b);
+}
+
+Fixed& Fixed::max( Fixed &a,Fixed &b)
+{
+    if(a._fpoint > b._fpoint)
+        return (a);
+}
+
+const Fixed& Fixed::min(const Fixed& a, const Fixed& b)
+{
+    if(a._fpoint > b._fpoint)
+        return (b);
+}
+
+const Fixed& Fixed::max(const Fixed& a, const Fixed& b)
+{
+    if(a._fpoint > b._fpoint)
+        return (a);
+}
 bool Fixed::operator<(const Fixed &other) const
 {
     return (this->_fpoint < other._fpoint);
