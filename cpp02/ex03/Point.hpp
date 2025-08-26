@@ -13,8 +13,8 @@ public:
     Point();
     Point(float X , float Y);
     ~Point();
-    const  Fixed& GetX();
-    const Fixed& GetY();
+    const  Fixed& GetX() const;
+    const Fixed& GetY() const;
 };
-
+bool bsp(Point const a, Point const b, Point const c, Point const point);
 #endif

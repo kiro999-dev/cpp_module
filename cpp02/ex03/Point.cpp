@@ -25,12 +25,12 @@ Point::~Point()
      
 }
 
-const Fixed &Point::GetX()
+const Fixed &Point::GetX() const
 {
     return this->x;
 }
 
-const Fixed &Point::GetY()
+const Fixed &Point::GetY() const
 {
     return this->y;
 }

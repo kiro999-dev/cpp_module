@@ -1,15 +1,10 @@
-#include "Fixed.hpp"
+#include "Point.hpp"
 
-int main( void ) {
-Fixed a;
-Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
+int main() {
+   
+    Point a(0,0);
+    Point c(0,20);
+    Point b(10,30);
 
-std::cout << a << std::endl;
-std::cout << ++a << std::endl;
-std::cout << a << std::endl;
-std::cout << a++ << std::endl;
-std::cout << a << std::endl;
-std::cout << b << std::endl;
-std::cout << Fixed::max( a, b ) << std::endl;
-return 0;
+    return 0;
 }
