@@ -15,6 +15,17 @@ int PhoneBook::getSize()
 {
 	return (size);
 }
+bool check_names(std::string str)
+{
+	size_t i = 0;
+	while (i < str.length())
+	{
+		if(!std::isalpha(str[i]))
+			return true;
+		i++;
+	}
+	return false;
+}
 void PhoneBook::setSize()
 {
 	if(size < 8)
@@ -30,13 +41,22 @@ void PhoneBook::ADD()
 	std::cout<<"enter first name:"<<std::endl;
 	if(safegetline(str))
 		return;
+	if(check_names(str))
+	{
+		std::cout<<"Name must contain letters only. Please try again."<<std::endl;
+		return;
+	}
 	contact.SetFirstName(str);
-
 	std::cout<<"enter last name:"<<std::endl;
+
 	if(safegetline(str))
 		return;
+	if(check_names(str))
+	{
+		std::cout<<"Name must contain letters only. Please try again."<<std::endl;
+		return;
+	}
 	contact.SetLastName(str);
-
 	std::cout<<"enter nick name:"<<std::endl;
 	if(safegetline(str))
 		return;
