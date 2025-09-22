@@ -19,7 +19,7 @@ class Contacts
         std::string& GetFirstName();
         std::string& GetLastName();
         std::string& GetNickName();
-        std::string& GetPhoneNumber();
+        std::string& GetPhoneNumber();   
         std::string& GetDarkSecret();
 };
 #endif

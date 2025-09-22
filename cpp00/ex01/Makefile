@@ -9,12 +9,12 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
 
-%.o: %.cpp
+%.o: %.cpp  $(HEADERS) 
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJ)
-
+ 
 fclean: clean
 	rm -f $(NAME)
 

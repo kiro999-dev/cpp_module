@@ -23,37 +23,39 @@ void PhoneBook::setSize()
 void PhoneBook::ADD()
 {
 	int index = getIndex();
+	Contacts contact;
 	system("clear");
 	std::string str;
 
 	std::cout<<"enter first name:"<<std::endl;
 	if(safegetline(str))
 		return;
-	arr[index%8].SetFirstName(str);
+	contact.SetFirstName(str);
 
 	std::cout<<"enter last name:"<<std::endl;
 	if(safegetline(str))
 		return;
-	arr[index%8].SetLastName(str);
+	contact.SetLastName(str);
 
 	std::cout<<"enter nick name:"<<std::endl;
 	if(safegetline(str))
 		return;
-	arr[index%8].SetNickName(str);
+	contact.SetNickName(str);
 
 	std::cout<<"enter phone number:" <<std::endl;
 	if(safegetline(str))
 		return;
 	if(check_is_number(str))
 	{
-		std::cout<<"pleas enter a number"<<std::endl;
+		std::cout<<"Please enter a number"<<std::endl;
 		return;
 	}
-	arr[index%8].SetPhoneNumber(str);
+	contact.SetPhoneNumber(str);
 	std::cout<<"enter darkest secret:" <<std::endl;
 	if(safegetline(str))
 		return;
-	arr[index%8].SetDarkSecret(str);
+	contact.SetDarkSecret(str);
+	arr[index%8] = contact;
 	setIndex();
 	setSize();
 	system("clear");
@@ -106,7 +108,7 @@ void PhoneBook::Search()
 		return;
 	if(check_is_number(str))
 	{
-		std::cout<<"Please enter a number."<<std::endl;
+		std::cout<<"Please enter a valid index[0-7]."<<std::endl;
 		return ;
 	}
 	SearchIndex= std::atoi(str.c_str());
