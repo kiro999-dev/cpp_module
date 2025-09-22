@@ -3,7 +3,7 @@ OBJ = $(SRC:.cpp=.o)
 NAME = phonebook
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-
+HEADERS = Contact.hpp PhoneBook.hpp
 all: $(NAME)
 
 $(NAME): $(OBJ)
