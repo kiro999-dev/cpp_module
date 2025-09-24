@@ -7,8 +7,6 @@ class Fixed
 private:
 	int _fpoint;
 	static const int _fracions_bits = 8;
-	
-
 public:
 	
 	Fixed(const Fixed &obj);
@@ -16,7 +14,7 @@ public:
 	Fixed(const int );
 	Fixed(const float );
 	~Fixed();
-	Fixed &operator=(const Fixed &other);
+	// Fixed &operator=(const Fixed &other);
 	int getRawBits( void ) const;
 	void setRawBits( int const raw );
 	float toFloat( void ) const;

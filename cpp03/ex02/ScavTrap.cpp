@@ -20,7 +20,7 @@ void ScavTrap::attack(const std::string& target)
 
 ScavTrap::~ScavTrap()
 {
-	std::cout<<"ClaptTrap destructor has been called"<<std::endl;
+	std::cout<<"ScavTrap destructor has been called"<<std::endl;
 }
 ScavTrap ::ScavTrap(const ScavTrap &other)
 {
