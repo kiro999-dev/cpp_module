@@ -131,7 +131,18 @@ void PhoneBook::Search()
 		std::cout<<"Please enter a valid index[0-7]."<<std::endl;
 		return ;
 	}
-	SearchIndex= std::atoi(str.c_str());
+	if(str.length() > 1)
+	{
+		std::cout<<"Please enter one digit [0-9]"<<std::endl;
+		return ;
+	}
+	SearchIndex = std::atoi(str.c_str());
+	std::cout<<SearchIndex<<std::endl;
+	if(SearchIndex < 0)
+	{
+		std::cout<<"Please enter a valid index[0-7]."<<std::endl;
+		return ;
+	}
 	if(SearchIndex > getSize() - 1)
 	{
 		std::cout<<"out of range"<<std::endl;
