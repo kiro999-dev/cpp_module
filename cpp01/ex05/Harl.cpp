@@ -9,7 +9,7 @@ Harl::~Harl()
 void Harl::complain(std::string level)
 {
 	int i = 0;
-	int index = -1;
+
 	void (Harl::*func[4])(void);
 	func[0] = &Harl::debug;
 	func[1] = &Harl::info;
@@ -21,28 +21,12 @@ void Harl::complain(std::string level)
 	{
 		if (level == complains[i])
 		{
-			index = i;
+			(harl.*func[i])();
 			break;
 		}
 		i++;
 	}
-	switch (index)
-	{
-	case 0:
-		(harl.*func[0])();
-		break;
-	case 1:
-		(harl.*func[1])();
-		break;
-	case 2:
-		(harl.*func[2])();
-		break;
-	case 3:
-		(harl.*func[3])();
-	default:
-		std::cout<<"[ Probably complaining about insignificant problems ]"<<std::endl;
-		break;
-	}
+
 }
 void Harl::debug(void)
 {

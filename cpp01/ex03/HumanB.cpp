@@ -2,8 +2,11 @@
 
 void HumanB::attack()
 {
-    if(WpB == nullptr)
+    if(WpB == NULL)
+    {
+        std::cout<<this->name<<" dose not have a weapon "<<std::endl;
         return;
+    }
     std::cout<<this->name<<" attacks with their "<<WpB->getType()<<std::endl;
 }
 void HumanB:: setWeapon(Weapon& weapon)
@@ -13,7 +16,7 @@ void HumanB:: setWeapon(Weapon& weapon)
 
 HumanB::HumanB(std::string name)
 {
-    this->WpB = nullptr;
+    this->WpB = NULL;
     this->name = name;
 }
 
