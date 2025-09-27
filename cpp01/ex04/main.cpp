@@ -24,11 +24,11 @@ int main(int argc, char **argv)
 	s2 = argv[3];
 	std::ifstream file(filename.c_str());
 	filename_re = filename + ".replace";
-	if (file.is_open())
+	if (file.is_open() )
 	{
-		while (std::getline(file, str,'\0'))
+
+		if (std::getline(file, str,'\0') || file.eof())
 		{
-			std::cout<<str<<std::endl;
 			index = str.find(s1);
 			while (index != std::string::npos && !s1.empty())
 			{
@@ -40,18 +40,25 @@ int main(int argc, char **argv)
 			if (!file.eof())
 				new_str += "\n";
 		}
-		file.close();
+		else
+		{
+			std::cout << "Erorr opening file" << std::endl;
+			return (1);
+		}
 		std::ofstream filereplace(filename_re.c_str());
 		if (filereplace.is_open())
 			filereplace << new_str;
 		else
 		{
 			std::cout << "Erorr opening file" << std::endl;
+			return 1;
 		}
-		filereplace.close();
+
 	}
 	else
 	{
 		std::cout << "Erorr opening file" << std::endl;
+		return 1;
 	}
+	return 0;
 }
