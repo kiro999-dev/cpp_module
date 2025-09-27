@@ -30,18 +30,17 @@ void Harl::complain(std::string level)
 	{
 	case 0:
 		(harl.*func[0])();
-		break;
+
 	case 1:
 		(harl.*func[1])();
-		break;
+
 	case 2:
 		(harl.*func[2])();
-		break;
+
 	case 3:
 		(harl.*func[3])();
 	default:
 		std::cout<<"[ Probably complaining about insignificant problems ]"<<std::endl;
-		break;
 	}
 }
 void Harl::debug(void)
