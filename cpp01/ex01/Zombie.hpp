@@ -1,5 +1,6 @@
 #include <iostream>
-
+#ifndef ZOMBIE_HPP
+#define ZOMBIE_HPP
 class Zombie
 {
 private:
@@ -12,3 +13,4 @@ public:
     ~Zombie();
 };
 Zombie* zombieHorde( int N, std::string name );
+#endif

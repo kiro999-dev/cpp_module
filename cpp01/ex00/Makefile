@@ -1,4 +1,5 @@
 SRC = main.cpp Zombie.cpp newZombie.cpp randomChump.cpp 
+HEADERS = Zombie.hpp
 OBJ = $(SRC:.cpp=.o)
 NAME = Zombie
 CC = c++
@@ -9,7 +10,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
 
-%.o: %.cpp
+%.o: %.cpp $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
