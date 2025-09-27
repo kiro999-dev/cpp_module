@@ -12,6 +12,7 @@ int main(int argc, char **argv)
 	std::string s1;
 	std::string str;
 	std::string filename;
+	std::string filename_re;
 	std::string new_str = "";
 	size_t index;
 	int i;
@@ -21,11 +22,13 @@ int main(int argc, char **argv)
 	filename = argv[1];
 	s1 = argv[2];
 	s2 = argv[3];
-	std::ifstream file(filename);
+	std::ifstream file(filename.c_str());
+	filename_re = filename + ".replace";
 	if (file.is_open())
 	{
-		while (std::getline(file, str))
+		while (std::getline(file, str,'\0'))
 		{
+			std::cout<<str<<std::endl;
 			index = str.find(s1);
 			while (index != std::string::npos && !s1.empty())
 			{
@@ -38,7 +41,7 @@ int main(int argc, char **argv)
 				new_str += "\n";
 		}
 		file.close();
-		std::ofstream filereplace(filename + ".replace");
+		std::ofstream filereplace(filename_re.c_str());
 		if (filereplace.is_open())
 			filereplace << new_str;
 		else
