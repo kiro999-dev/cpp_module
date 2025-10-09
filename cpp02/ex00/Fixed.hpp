@@ -21,5 +21,6 @@ public:
 	int toInt( void ) const;
 
 };  
+
 std::ostream& operator<<(std::ostream& stream, const Fixed& obj);
 #endif

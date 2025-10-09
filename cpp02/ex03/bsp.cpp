@@ -17,6 +17,10 @@ bool bsp(Point const a, Point const b, Point const c, Point const point)
 	Fixed a1 = absval(area(point, b, c));
 	Fixed a2 = absval(area(a, point, c));
 	Fixed a3 = absval(area(a, b, point));
+
+
+	if (a1 * a2 * a3 == 0)
+		return false;
 	if (a0 == a1 + a2 + a3)
 		return true;
 	return false;
