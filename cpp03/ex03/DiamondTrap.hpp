@@ -3,10 +3,12 @@
 #include <iostream>
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
-class DiamondTrap : public ClapTrap
+#include "ClapTrap.hpp"
+
+class DiamondTrap : public FragTrap, public ScavTrap
 {
 private:
-
+	std::string name;
 public:
 	DiamondTrap(std::string name);
 	DiamondTrap(const DiamondTrap &other);
