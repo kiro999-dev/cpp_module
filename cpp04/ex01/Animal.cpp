@@ -7,7 +7,7 @@ Animal::Animal(std::string type)
 }
 Animal::Animal()
 {
-    type = "unkown";
+    type = "unknown";
     std::cout<<"Animal Constructor has been called "<<std::endl;
 }
 Animal::Animal(Animal const &other)

@@ -18,7 +18,8 @@ Cat::Cat(Cat const& other):Animal(other)
 }
 Cat& Cat::operator=(Cat const& other)
 {
-    
+    if (this == &other)
+        return *this;
     Animal::operator=(other);
     delete brain;
     brain = new Brain(*other.brain);

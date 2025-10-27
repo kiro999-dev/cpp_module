@@ -13,14 +13,16 @@ Dog::~Dog()
 }
 Dog::Dog(Dog const& other):Animal(other)
 {
+    
     brain = new Brain(*other.brain);
     std::cout<<"Dog copy Constructor has been called "<<std::endl;
 }
 Dog& Dog::operator=(Dog const& other)
 {
-    
+    if (this == &other)
+        return *this;
+
     Animal::operator=(other);
-    delete brain;
     brain = new Brain(*other.brain);
     std::cout<<"Dog copy assignment  Constructor has been called "<<std::endl;
     return *this;

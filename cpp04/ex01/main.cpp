@@ -5,7 +5,7 @@ int main()
 {
     const Animal *array[10];
      Animal *x = new Cat();
-    x->makeSound();
+    
     for (size_t i = 0; i < 10; i++)
     {
         if(i < 5)
