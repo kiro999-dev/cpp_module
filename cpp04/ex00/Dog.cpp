@@ -1,5 +1,5 @@
 #include "Dog.hpp"
-Dog::Dog()
+Dog::Dog():Animal("Dog")
 {
     this->type = "Dog";
      std::cout<<"Dog Constructor has been called "<<std::endl;
@@ -21,7 +21,7 @@ Dog& Dog::operator=(Dog const &other)
     std::cout<<"Dog copy assignment  Constructor has been called "<<std::endl;
     return *this;
 }
-void makeSound()
+void Dog::makeSound() const
 {
     std::cout<<"3aw 3aw 3awwww"<<std::endl;
 }
