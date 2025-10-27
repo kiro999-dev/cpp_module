@@ -1,22 +1,27 @@
 #include "Cat.hpp"
 Cat::Cat():Animal("Cat")
 {
+    this->brain = new Brain();
     this->type = "Cat";
-     std::cout<<"Cat Constructor has been called "<<std::endl;
+    std::cout<<"Cat Constructor has been called "<<std::endl;
 }
 
 Cat::~Cat()
 {
+    delete this->brain;
      std::cout<<"Cat Destructor has been called "<<std::endl;
 }
-Cat::Cat(Cat const& other)
+Cat::Cat(Cat const& other):Animal(other)
 {
-    this->type = other.type;
+    brain = new Brain(*other.brain);
     std::cout<<"Cat copy Constructor has been called "<<std::endl;
 }
 Cat& Cat::operator=(Cat const& other)
 {
-    this->type = other.type;
+    
+    Animal::operator=(other);
+    delete brain;
+    brain = new Brain(*other.brain);
     std::cout<<"Cat copy assignment  Constructor has been called "<<std::endl;
     return *this;
 }

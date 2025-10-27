@@ -3,27 +3,26 @@
 #include "WrongCat.hpp"
 int main()
 {
-    const Animal *meta = new Animal();
-    const Animal *j = new Dog();
-    const Animal *i = new Cat();
-    std::cout << j->getType() << " " << std::endl;
-    std::cout << i->getType() << " " << std::endl;
-    i->makeSound(); // will output the cat sound!
-    j->makeSound();
-    meta->makeSound();
-    delete i;
-    delete j;
-    delete meta;
+    const Animal *array[10];
+     Animal *x = new Cat();
+    x->makeSound();
+    for (size_t i = 0; i < 10; i++)
+    {
+        if(i < 5)
+        {
+            array[i] = new Dog();
+        }
+        else
+            array[i] = new Cat();
+    }
+    
+    for (size_t i = 0; i < 10; i++)
+    {
+        delete array[i];
+    }
+ 
     
     std::cout<<"------------------------------------"<<std::endl;
-    const WrongAnimal *a = new WrongAnimal();
-    const WrongAnimal *b = new WrongCat();
-    std::cout<<a->getType()<<" "<<std::endl;
-    std::cout<<b->getType()<<" "<<std::endl;
-    a->makeSound();
-    b->makeSound();
-    delete a;
-    delete b;
-   
+  
     return 0;
 }
