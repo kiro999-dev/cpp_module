@@ -4,7 +4,6 @@
 int main()
 {
     const Animal *array[10];
-
     for (size_t i = 0; i < 10; i++)
     {
         if(i < 5)
@@ -20,7 +19,6 @@ int main()
         delete array[i];
     }
  
-    
     std::cout<<"------------------------------------"<<std::endl;
   
     return 0;
