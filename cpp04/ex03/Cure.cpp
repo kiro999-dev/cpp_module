@@ -5,13 +5,14 @@ Cure::Cure() : AMateria("Cure")
     std::cout << "Cure Constructor has been called " << std::endl;
 }
 
-Cure::Cure(std::string const &type) : AMateria("Cure")
+Cure::Cure(std::string const &type):AMateria("Cure")
 {
     (void)type;
     std::cout << "Cure Constructor has been called " << std::endl;
 }
-Cure::Cure(Cure const &other) : AMateria(other)
+Cure::Cure(Cure const &other): AMateria("Cure")
 {
+    (void)other;
     std::cout << "Cure copy Constructor has been called " << std::endl;
 }
 Cure  &Cure::operator=(Cure const &other)

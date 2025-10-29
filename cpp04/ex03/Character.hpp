@@ -7,7 +7,6 @@ class Character :public ICharacter
 {
 private:
     std::string name;
-    int count;
     AMateria *amateria_arr[4];
 public:
     Character();

@@ -3,8 +3,8 @@ Character::~Character()
 {
     for (size_t i = 0; i < 4; i++)
     {
-        if(amateria_arr[i])
-            delete amateria_arr;
+        if (amateria_arr[i])
+            delete amateria_arr[i];
     }
 }
 Character::Character()
@@ -29,29 +29,39 @@ Character::Character(Character const &other)
     name = other.name;
     for (size_t i = 0; i < 4; i++)
     {
-        if(amateria_arr[i])
+        if (other.amateria_arr[i])
             amateria_arr[i] = other.amateria_arr[i]->clone();
+        else
+            amateria_arr[i] = NULL;
     }
     std::cout << "Character copy Constructor has been called " << std::endl;
 }
+/*
+character A; all of a equipes are null // are not null
+charcter B(A);
+A [0] = B [4]
+A = B;//leaks
+*/
 Character &Character::operator=(Character const &other)
 {
     if (this == &other)
         return *this;
     for (size_t i = 0; i < 4; i++)
     {
-        if(amateria_arr[i])
+
+        if (amateria_arr[i])
+            delete amateria_arr[i];
+
+        if (other.amateria_arr[i])
             amateria_arr[i] = other.amateria_arr[i]->clone();
+        else
+            amateria_arr[i] = NULL;
     }
     name = other.name;
     std::cout << "Character copy assignment  Constructor has been called " << std::endl;
     return *this;
 }
 
-Character::~Character()
-{
-    std::cout << "Character Destructor has been called " << std::endl;
-}
 std::string const &Character::getName() const
 {
     return this->name;
@@ -70,6 +80,7 @@ void Character::equip(AMateria *m)
             return;
         }
     }
+    delete m;
 }
 
 void Character::unequip(int idx)
@@ -80,14 +91,15 @@ void Character::unequip(int idx)
         {
             std::cout << "unequip AMateria " << amateria_arr[idx]->getType() << std::endl;
             amateria_arr[idx] = NULL;
+            // save address for delete later
         }
         else
-            std::cout << " nothing to unequip " <<std::endl; 
+            std::cout << " nothing to unequip " << std::endl;
     }
 }
 void Character::use(int idx, ICharacter &target)
 {
-    if(idx >= 0 && idx < 4 && amateria_arr[idx] != NULL)
+    if (idx >= 0 && idx < 4 && amateria_arr[idx] != NULL)
     {
         amateria_arr[idx]->use(target);
     }

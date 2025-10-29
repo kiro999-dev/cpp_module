@@ -1,6 +1,9 @@
 #ifndef IMateriaSource_hpp
 #define IMateriaSource_hpp
+
 #include "AMateria.hpp"
+class AMateria;
+
 class IMateriaSource
 {
 public:

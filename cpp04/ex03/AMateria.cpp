@@ -24,9 +24,10 @@ std::string const & AMateria::getType() const
 }
  void AMateria::use(ICharacter &target)
  {
-
+    (void)target;
  }
 AMateria::~AMateria()
 {
      std::cout<<"AMateria Destructor has been called "<<std::endl;
 }
+
