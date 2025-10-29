@@ -1,14 +1,14 @@
 #include "Character.hpp"
+#include "Linked_list.hpp"
 Character::~Character()
 {
     for (size_t i = 0; i < 4; i++)
-    {
-        if (amateria_arr[i])
-            delete amateria_arr[i];
-    }
+        delete amateria_arr[i];
+    delete list;
 }
 Character::Character()
 {
+    list = new LinkedList();
     for (size_t i = 0; i < 4; i++)
     {
         amateria_arr[i] = NULL;
@@ -22,9 +22,10 @@ Character::Character(std::string name) : name(name)
     {
         amateria_arr[i] = NULL;
     }
+    list = new LinkedList();
     std::cout << "Character Constructor has been called " << std::endl;
 }
-Character::Character(Character const &other)
+Character::Character(Character const &other)//copy constructor linked list
 {
     name = other.name;
     for (size_t i = 0; i < 4; i++)
@@ -36,13 +37,8 @@ Character::Character(Character const &other)
     }
     std::cout << "Character copy Constructor has been called " << std::endl;
 }
-/*
-character A; all of a equipes are null // are not null
-charcter B(A);
-A [0] = B [4]
-A = B;//leaks
-*/
-Character &Character::operator=(Character const &other)
+
+Character &Character::operator=(Character const &other) // same for this one
 {
     if (this == &other)
         return *this;
@@ -70,6 +66,14 @@ void Character::equip(AMateria *m)
 {
     if (m == NULL)
         return;
+   
+    for (size_t i = 0; i < 4; i++)
+    {
+        if (amateria_arr[i] == m) {
+            std::cout << "Trying to equip duplicates\n";
+            return;
+        }
+    }
     for (size_t i = 0; i < 4; i++)
     {
         if (amateria_arr[i] == NULL)
@@ -90,8 +94,11 @@ void Character::unequip(int idx)
         if (amateria_arr[idx] != NULL)
         {
             std::cout << "unequip AMateria " << amateria_arr[idx]->getType() << std::endl;
+            if(!list->find(amateria_arr[idx]))
+                list->push_back(amateria_arr[idx]);
+            else
+                std::cout<<"wa l7wa\n";
             amateria_arr[idx] = NULL;
-            // save address for delete later
         }
         else
             std::cout << " nothing to unequip " << std::endl;

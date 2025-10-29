@@ -15,7 +15,6 @@ int main()
         else
             array[i] = new Cat();
     }
-    
     for (size_t i = 0; i < 10; i++)
     {
         delete array[i];

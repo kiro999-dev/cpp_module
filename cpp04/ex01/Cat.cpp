@@ -13,6 +13,7 @@ Cat::~Cat()
 }
 Cat::Cat(Cat const& other):Animal(other)
 {
+    delete brain;
     brain = new Brain(*other.brain);
     std::cout<<"Cat copy Constructor has been called "<<std::endl;
 }

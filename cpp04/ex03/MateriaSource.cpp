@@ -6,7 +6,7 @@ MateriaSource::MateriaSource()
     {
         materiasource[i] = NULL;
     }
-    std::cout << " MateriaSource Constructor has been called " << std::endl;
+    std::cout <<"MateriaSource Constructor has been called " << std::endl;
 }
 MateriaSource::~MateriaSource()
 {

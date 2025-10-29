@@ -1,12 +1,13 @@
 #ifndef Character_hpp
 #define Character_hpp
 #include "ICharacter.hpp"
-
+#include "Linked_list.hpp"
 
 class Character :public ICharacter
 {
 private:
     std::string name;
+    LinkedList *list;
     AMateria *amateria_arr[4];
 public:
     Character();

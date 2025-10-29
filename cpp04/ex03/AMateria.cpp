@@ -4,7 +4,7 @@ AMateria::AMateria():type("unknown")
 {
     std::cout<<"AMateria Constructor has been called "<<std::endl;
 }
-AMateria::AMateria(std::string const &type):type(type)
+AMateria::AMateria(std::string const &type) : type(type)
 {
     std::cout<<"AMateria Constructor has been called "<<std::endl;
 }
