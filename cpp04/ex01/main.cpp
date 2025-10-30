@@ -4,8 +4,8 @@
 int main()
 {
     const Animal *array[10];
-     Animal *x = new Cat();
-    
+
+    Animal *x = new Cat();
     for (size_t i = 0; i < 10; i++)
     {
         if(i < 5)
@@ -15,13 +15,12 @@ int main()
         else
             array[i] = new Cat();
     }
+    std::cout<<"------------------------------------"<<std::endl;
     for (size_t i = 0; i < 10; i++)
     {
         delete array[i];
     }
- 
-    
-    std::cout<<"------------------------------------"<<std::endl;
+
   
     return 0;
 }
