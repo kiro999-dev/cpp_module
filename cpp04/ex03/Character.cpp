@@ -1,11 +1,6 @@
 #include "Character.hpp"
 #include "Linked_list.hpp"
-Character::~Character()
-{
-    for (size_t i = 0; i < 4; i++)
-        delete amateria_arr[i];
-    delete list;
-}
+
 Character::Character()
 {
     list = new LinkedList();
@@ -25,7 +20,7 @@ Character::Character(std::string name) : name(name)
     list = new LinkedList();
     std::cout << "Character Constructor has been called " << std::endl;
 }
-Character::Character(Character const &other)//copy constructor linked list
+Character::Character(Character const &other)
 {
     name = other.name;
     for (size_t i = 0; i < 4; i++)
@@ -38,7 +33,7 @@ Character::Character(Character const &other)//copy constructor linked list
     std::cout << "Character copy Constructor has been called " << std::endl;
 }
 
-Character &Character::operator=(Character const &other) // same for this one
+Character &Character::operator=(Character const &other) 
 {
     if (this == &other)
         return *this;
@@ -96,8 +91,6 @@ void Character::unequip(int idx)
             std::cout << "unequip AMateria " << amateria_arr[idx]->getType() << std::endl;
             if(!list->find(amateria_arr[idx]))
                 list->push_back(amateria_arr[idx]);
-            else
-                std::cout<<"wa l7wa\n";
             amateria_arr[idx] = NULL;
         }
         else
@@ -110,4 +103,11 @@ void Character::use(int idx, ICharacter &target)
     {
         amateria_arr[idx]->use(target);
     }
+}
+Character::~Character()
+{
+    for (size_t i = 0; i < 4; i++)
+        delete amateria_arr[i];
+    delete list;
+    std::cout << "Character destructor has been called " << std::endl;
 }
