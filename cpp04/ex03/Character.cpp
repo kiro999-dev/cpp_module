@@ -31,12 +31,14 @@ Character::Character(Character const &other)
             amateria_arr[i] = NULL;
     }
     std::cout << "Character copy Constructor has been called " << std::endl;
+    list = new LinkedList();
 }
 
 Character &Character::operator=(Character const &other) 
 {
     if (this == &other)
         return *this;
+   
     for (size_t i = 0; i < 4; i++)
     {
 
@@ -48,6 +50,8 @@ Character &Character::operator=(Character const &other)
         else
             amateria_arr[i] = NULL;
     }
+    delete list;
+    list = new LinkedList();
     name = other.name;
     std::cout << "Character copy assignment  Constructor has been called " << std::endl;
     return *this;
@@ -107,7 +111,10 @@ void Character::use(int idx, ICharacter &target)
 Character::~Character()
 {
     for (size_t i = 0; i < 4; i++)
-        delete amateria_arr[i];
+    {
+        if(!list->find(amateria_arr[i]))
+           delete amateria_arr[i];
+    }
     delete list;
     std::cout << "Character destructor has been called " << std::endl;
 }

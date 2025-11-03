@@ -1,50 +1,60 @@
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap(std::string name):ClapTrap(name)
+ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
-    std::cout<<" ScavTrap constructor has been called"<<std::endl;
-}
-ScavTrap::ScavTrap():ClapTrap()
-{
-    _AttackDamage = 20;
-    _EnergyPoint = 50;
     _HitPoint = 100;
-    std::cout<<" ScavTrap constructor has been called"<<std::endl;
+    _EnergyPoint = 50;
+    _AttackDamage = 20;
+    std::cout << "ScavTrap constructor has been called" << std::endl;
 }
+
+ScavTrap::ScavTrap() : ClapTrap()
+{
+    _HitPoint = 100;
+    _EnergyPoint = 50;
+    _AttackDamage = 20;
+    std::cout << "ScavTrap constructor has been called" << std::endl;
+}
+
 void ScavTrap::attack(const std::string& target)
 {
+    if(_HitPoint == 0)
+    {
+        std::cout << "ScavTrap " << _name << " you can not attack you have 0 Hit Point" << std::endl;
+        return;
+    }
     if(_EnergyPoint == 0)
     {
-        std::cout<<"you can not attack you had 0 Eenergy point"<<std::endl;
+        std::cout << "ScavTrap " << _name << " you can not attack you have 0 Energy point" << std::endl;
         return;
     }
     _EnergyPoint--;
-    std::cout<<"ScavTrap "<<_name <<"attacks"<<target<<" , causing points of damage!"<<std::endl;
+    std::cout << "ScavTrap " << _name << " attacks " << target 
+              << " causing " << _AttackDamage << " points of damage!" << std::endl;
 }
 
 ScavTrap::~ScavTrap()
 {
-	std::cout<<"ScavTrap destructor has been called"<<std::endl;
+    std::cout << "ScavTrap destructor has been called" << std::endl;
 }
-ScavTrap ::ScavTrap(const ScavTrap &other)
+
+ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap(other)
 {
-    _name = other._name;
-    _AttackDamage=other._AttackDamage;
-    _EnergyPoint = other._EnergyPoint;
-   _HitPoint = other._HitPoint;
-   std::cout<<" ScavTrap copy construcor has been called"<<std::endl;
+    std::cout << "ScavTrap copy constructor has been called" << std::endl;
 }
+
 ScavTrap &ScavTrap::operator=(const ScavTrap &other)
 {   
     if(this == &other)
     {
         return *this;
     }
-     _name= other._name;
-    _AttackDamage=other._AttackDamage;
-    _EnergyPoint = other._EnergyPoint;
-   _HitPoint = other._HitPoint;
-   std::cout<<"ScavTrap copy  assignment operator has been called"<<std::endl;
-   return *this;
+    ClapTrap::operator=(other);
+    std::cout << "ScavTrap copy assignment operator has been called" << std::endl;
+    return *this;
 }
 
+void ScavTrap::guardGate()
+{
+    std::cout << _name << " is now in Gate keeper mode" << std::endl;
+}

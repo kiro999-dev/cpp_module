@@ -26,6 +26,8 @@ void Harl::complain(std::string level)
 		}
 		i++;
 	}
+	if(i == 4)
+		std::cout<<"[ Probably complaining about insignificant problems ]"<<std::endl;
 
 }
 void Harl::debug(void)

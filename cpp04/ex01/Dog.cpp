@@ -23,6 +23,7 @@ Dog& Dog::operator=(Dog const& other)
         return *this;
 
     Animal::operator=(other);
+    delete brain;
     brain = new Brain(*other.brain);
     std::cout<<"Dog copy assignment  Constructor has been called "<<std::endl;
     return *this;

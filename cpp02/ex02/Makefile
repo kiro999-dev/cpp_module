@@ -3,13 +3,13 @@ OBJ = $(SRC:.cpp=.o)
 NAME = main
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-
+Header = Fixed.hpp
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
 
-%.o: %.cpp
+%.o: %.cpp $(Header)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

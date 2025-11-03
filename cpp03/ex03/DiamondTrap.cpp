@@ -1,50 +1,48 @@
 #include "DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap(std::string name)
+DiamondTrap::DiamondTrap(std::string name):ClapTrap(name + "_clap_name")
 {
-    this->name = name;
+    this->_name = name;
     _AttackDamage = FragTrap::_AttackDamage;
     _HitPoint = FragTrap::_HitPoint;
     _EnergyPoint = ScavTrap::_EnergyPoint;
 
-    std::cout << "_AttackDamage: " << _AttackDamage << std::endl;
-    std::cout << "_HitPoint: " << _HitPoint << std::endl;
-    std::cout << "_EnergyPoint: " << _EnergyPoint << std::endl;
-    // std::cout << "DiamondTrap " << this->name << " has been constructed!" << std::endl;
+    std::cout << "DiamondTrap " << this->_name << " has been constructed!" << std::endl;
 }
-DiamondTrap::DiamondTrap()
+DiamondTrap::DiamondTrap():ClapTrap("default diamond_clap_name"), FragTrap(), ScavTrap()
 {
-    this->name = "default diamond";
+    this->_name = "default diamond";
     _AttackDamage = FragTrap::_AttackDamage;
     _HitPoint = FragTrap::_HitPoint;
     _EnergyPoint = ScavTrap::_EnergyPoint;
-    // std::cout<<"DiamondTrap constructor has been called"<<std::endl;
+    std::cout<<"DiamondTrap constructor has been called"<<std::endl;
 }
 
 
 DiamondTrap::~DiamondTrap()
 {
-	// std::cout<<"DiamondTrap destructor has been called"<<std::endl;
+	std::cout<<"DiamondTrap destructor has been called"<<std::endl;
 }
-DiamondTrap ::DiamondTrap(const DiamondTrap &other)
+DiamondTrap ::DiamondTrap(const DiamondTrap &other):ClapTrap(other),FragTrap(other),ScavTrap(other)
 {
-    name= other.name;
-    _AttackDamage= other._AttackDamage;
-    _EnergyPoint = other._EnergyPoint;
-   _HitPoint = other._HitPoint;
-//    std::cout<<"DiamondTrap copy construcor has been called"<<std::endl;
+    _name= other._name;
+   std::cout<<"DiamondTrap copy construcor has been called"<<std::endl;
 }
 DiamondTrap &DiamondTrap::operator=(const DiamondTrap &other)
 {   
-    // std::cout<<"DiamondTrap copy  assignment operator has been called"<<std::endl;
+    std::cout<<"DiamondTrap copy  assignment operator has been called"<<std::endl;
     if(this == &other)
     {
         return *this;
     }
-     name = other.name;
-    _AttackDamage=other._AttackDamage;
-    _EnergyPoint = other._EnergyPoint;
-   _HitPoint = other._HitPoint;
+    _name=other._name;
+    ClapTrap::operator=(other);
+    FragTrap::operator=(other);
+    ScavTrap::operator=(other);
    return *this;
 }
 
+void DiamondTrap::whoAmI()
+{
+    std::cout<<"my _name: "<<_name<<" ClapTrap _name: "<<ClapTrap::_name<<std::endl;
+}

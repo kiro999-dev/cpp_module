@@ -8,15 +8,7 @@ MateriaSource::MateriaSource()
     }
     std::cout <<"MateriaSource Constructor has been called " << std::endl;
 }
-MateriaSource::~MateriaSource()
-{
-    for (size_t i = 0; i < 4; i++)
-    {
-        if (materiasource[i] != NULL)
-            delete materiasource[i];
-    }
-    std::cout << " MateriaSource destructor has been called " << std::endl;
-}
+
 void MateriaSource::learnMateria(AMateria *am)
 {
     if (!am)
@@ -69,4 +61,13 @@ MateriaSource::MateriaSource(MateriaSource const &other)
             materiasource[i] = NULL;
     }
     std::cout << " MateriaSource copy Constructor has been called " << std::endl;
+}
+MateriaSource::~MateriaSource()
+{
+    for (size_t i = 0; i < 4; i++)
+    {
+        if (materiasource[i] != NULL)
+            delete materiasource[i];
+    }
+    std::cout << " MateriaSource destructor has been called " << std::endl;
 }

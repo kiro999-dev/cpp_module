@@ -1,16 +1,16 @@
 #include "Cure.hpp"
 
-Cure::Cure() : AMateria("Cure")
+Cure::Cure() : AMateria("cure")
 {
     std::cout << "Cure Constructor has been called " << std::endl;
 }
 
-Cure::Cure(std::string const &type):AMateria("Cure")
+Cure::Cure(std::string const &type):AMateria("cure")
 {
     (void)type;
     std::cout << "Cure Constructor has been called " << std::endl;
 }
-Cure::Cure(Cure const &other): AMateria("Cure")
+Cure::Cure(Cure const &other): AMateria("cure")
 {
     (void)other;
     std::cout << "Cure copy Constructor has been called " << std::endl;

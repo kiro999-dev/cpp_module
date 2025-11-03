@@ -15,20 +15,13 @@ int Fixed::getRawBits(void) const
 }
 void Fixed::setRawBits( const int  raw )
 {
+    std::cout<<"setRawBits member function called"<<std::endl;
 	_fpoint = raw;
 }
-Fixed::Fixed(const int intger) 
-{
-    _fpoint = intger << _fracions_bits;
-     std::cout<<"Int constructor called"<<std::endl;
-}
-Fixed::Fixed(const float float_num) 
-{
-    _fpoint = roundf(float_num * (1 << _fracions_bits));
-     std::cout<<"Float constructor called"<<std::endl;
-}
+
 Fixed:: Fixed(void)
 {
+      _fpoint = 0;
       std::cout<<"Default constructor called"<<std::endl;
 }
 
@@ -41,18 +34,4 @@ Fixed::Fixed(const Fixed &obj)
 Fixed ::~Fixed()
 {
 	std::cout<<"Destructor called"<<std::endl;
-}
-float Fixed::toFloat( void ) const
-{
-    float num = (float)_fpoint / (float) (1 << _fracions_bits);
-    return (num);
-}
-int Fixed ::toInt( void ) const
-{
-    return (_fpoint >> _fracions_bits);
-}
-std::ostream& operator<<(std::ostream& stream, const Fixed& obj)
-{
-        stream << obj.toFloat();
-        return stream;
 }

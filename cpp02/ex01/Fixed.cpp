@@ -15,6 +15,7 @@ int Fixed::getRawBits(void) const
 }
 void Fixed::setRawBits( const int  raw )
 {
+    std::cout<<"setRawBits member function called"<<std::endl;
 	_fpoint = raw;
 }
 Fixed::Fixed(const int intger) 
@@ -29,6 +30,7 @@ Fixed::Fixed(const float float_num)
 }
 Fixed:: Fixed(void)
 {
+    _fpoint = 0;
       std::cout<<"Default constructor called"<<std::endl;
 }
 

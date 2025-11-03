@@ -3,7 +3,7 @@ OBJ = $(SRC:.cpp=.o)
 NAME = main
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-
+Header = Fixed.hpp Point.hpp
 all: $(NAME)
 
 $(NAME): $(OBJ)

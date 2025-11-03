@@ -7,7 +7,7 @@ WrongAnimal::WrongAnimal(std::string type)
 }
 WrongAnimal::WrongAnimal()
 {
-    type = "unkown";
+    type = "unknown";
     std::cout<<"WrongAnimal Constructor has been called "<<std::endl;
 }
 WrongAnimal::WrongAnimal(WrongAnimal const &other)

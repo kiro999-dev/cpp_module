@@ -107,6 +107,7 @@ int Fixed::getRawBits(void) const
 }
 void Fixed::setRawBits( const int  raw )
 {
+    std::cout<<"setRawBits member function called"<<std::endl;
 	_fpoint = raw;
 }
 Fixed::Fixed(const int integer) 
