@@ -15,13 +15,13 @@ public:
     {
         public:
             GradeTooHighException();
-           virtual const char *what() const noexcept;
+           virtual const char *what() const throw();
     };
     class GradeTooLowException : public std::exception
     {
         public:
             GradeTooLowException();
-           virtual const char *what() const noexcept;
+           virtual const char *what()  const throw();
     };
     const std::string &GetName() const;
     const short&GetGrade() const;

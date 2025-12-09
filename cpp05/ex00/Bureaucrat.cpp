@@ -19,11 +19,11 @@ Bureaucrat::GradeTooHighException::GradeTooHighException()
 {
     
 }
-const char *Bureaucrat::GradeTooHighException::what() const noexcept
+const char *Bureaucrat::GradeTooHighException::what() const throw()
 {
     return "Grade Too High";
 }
-const char *Bureaucrat::GradeTooLowException::what() const noexcept
+const char *Bureaucrat::GradeTooLowException::what() const throw()
 {
     return "Grade Too Low";
 }

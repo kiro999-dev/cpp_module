@@ -8,15 +8,15 @@ NAME = Bureaucrat
 all: $(NAME)
 
 $(NAME): $(OBJ)
-        $(CC) $(FLAGS) $(OBJ) -o $(NAME)
+	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
 
 %.o: %.cpp $(HEADERS)
-        $(CC) $(FLAGS) -c $< -o $@
+	$(CC) $(FLAGS) -c $< -o $@
 
 clean:
-        $(RM) $(OBJ)
+	$(RM) $(OBJ)
 
 fclean: clean
-        $(RM) $(NAME)
+	$(RM) $(NAME)
 
 re: fclean all
