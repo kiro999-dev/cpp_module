@@ -9,19 +9,19 @@ private:
     short _grade;
 public:
     Bureaucrat();
-    Bureaucrat(const std::string name,short grade);
+    Bureaucrat(const std::string &name,short grade);
     ~Bureaucrat();
     class GradeTooHighException : public std::exception
     {
         public:
             GradeTooHighException();
-           virtual const char *what() noexcept;
+           virtual const char *what() const noexcept;
     };
     class GradeTooLowException : public std::exception
     {
         public:
             GradeTooLowException();
-           virtual const char *what() noexcept;
+           virtual const char *what() const noexcept;
     };
     const std::string &GetName() const;
     const short&GetGrade() const;

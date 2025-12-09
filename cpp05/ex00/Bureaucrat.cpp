@@ -2,14 +2,14 @@
 Bureaucrat::Bureaucrat():_name("unknown"),_grade(150)
 {
 }
-Bureaucrat::Bureaucrat(std::string name,short gread):_name(name)
+Bureaucrat::Bureaucrat(const std::string &name,short grade):_name(name)
 {
-    if(gread < 1)
+    if(grade < 1)
         throw GradeTooHighException();
-    else if(gread > 150)
+    else if(grade > 150)
         throw GradeTooLowException();
     else
-        _grade = gread;
+        _grade = grade;
 }
 
 Bureaucrat::GradeTooLowException::GradeTooLowException()
@@ -19,11 +19,11 @@ Bureaucrat::GradeTooHighException::GradeTooHighException()
 {
     
 }
-const char *Bureaucrat::GradeTooHighException::what()
+const char *Bureaucrat::GradeTooHighException::what() const noexcept
 {
     return "Grade Too High";
 }
-const char *Bureaucrat::GradeTooLowException::what()
+const char *Bureaucrat::GradeTooLowException::what() const noexcept
 {
     return "Grade Too Low";
 }
