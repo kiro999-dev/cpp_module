@@ -2,7 +2,7 @@
 Form::Form():_Name("Boss Form"),_IsSigned(0),
 _GradeSign(1),
 _GradeExecute(1){}
-Form::Form(std::string name,short gradeSign,short gradeExecute):_Name(name),_IsSigned(0),
+Form::Form(std::string name,short gradeSign,short gradeExecute):_Name(name),_IsSigned(false),
 _GradeSign(gradeSign),
 _GradeExecute(gradeExecute)
 {
@@ -57,5 +57,13 @@ std::ostream& operator<<(std::ostream& os, const Form& obj)
     os<<"GRADE REQUIRED TO SIGN IT: "<<obj.GetGradeSign()<<std::endl;
     os<<"GRADE REQUIRED TO EXECUTE IT: "<<obj.GetGradeSign()<<std::endl;
     return os;
+}
+void Form::beSigned(Bureaucrat bureaucrat)
+{
+    if(bureaucrat.GetGrade() > _GradeSign)
+        throw GradeTooLowException();
+    else
+        _IsSigned = true;
+    
 }
 Form::~Form(){}

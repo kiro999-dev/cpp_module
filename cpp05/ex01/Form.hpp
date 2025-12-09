@@ -32,6 +32,7 @@ public:
     const short& GetGradeSign() const;
     const short& GetGradeExecute() const;
     void  SetIsSigned(bool );
+    void  beSigned(Bureaucrat bureaucrat);
 };
 std::ostream& operator<<(std::ostream& os, const Form& obj);
 
