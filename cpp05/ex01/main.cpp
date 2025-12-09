@@ -12,18 +12,4 @@ int main()
     {
         std::cerr << e.what() << '\n';
     }
-   
-    catch(const Bureaucrat::GradeTooHighException e)
-    {
-        std::cerr << e.what() << '\n';
-    }
-    catch(const Form::GradeTooLowException e)
-    {
-        std::cerr << e.what() << '\n';
-    }
-   
-    catch(const Form::GradeTooHighException e)
-    {
-        std::cerr << e.what() << '\n';
-    }
 }

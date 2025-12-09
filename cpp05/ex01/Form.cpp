@@ -50,6 +50,14 @@ void  Form::SetIsSigned(bool fact)
 {
     _IsSigned = fact;
 }
+Form::GradeTooLowException::GradeTooLowException()
+{
+
+}
+Form::GradeTooHighException::GradeTooHighException()
+{
+
+}
 std::ostream& operator<<(std::ostream& os, const Form& obj)
 {
     os<<"NAME: "<<obj.GetName()<<std::endl;

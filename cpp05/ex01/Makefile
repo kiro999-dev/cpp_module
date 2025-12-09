@@ -1,8 +1,11 @@
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
-SRC = Bureaucrat.cpp main.cpp From.cpp
+
+SRC = Bureaucrat.cpp main.cpp Form.cpp
 OBJ = $(SRC:.cpp=.o)
-HEADERS = Bureaucrat.hpp From.hpp
+
+HEADERS = Bureaucrat.hpp Form.hpp
+
 NAME = Form
 
 all: $(NAME)
@@ -20,3 +23,4 @@ fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
+
