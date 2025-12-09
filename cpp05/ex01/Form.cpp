@@ -1,4 +1,5 @@
 #include "Form.hpp"
+#include "Bureaucrat.hpp"
 Form::Form():_Name("Boss Form"),_IsSigned(0),
 _GradeSign(1),
 _GradeExecute(1){}
@@ -16,7 +17,7 @@ _GradeSign(other._GradeSign),
 _GradeExecute(other._GradeExecute)
 {
 }
-const Form Form::operator=(const Form&other)
+ Form& Form::operator=(const Form&other)
 {
     _IsSigned = other._IsSigned;
     return *this;
@@ -52,13 +53,13 @@ void  Form::SetIsSigned(bool fact)
 std::ostream& operator<<(std::ostream& os, const Form& obj)
 {
     os<<"NAME: "<<obj.GetName()<<std::endl;
-    os<<"IS SIGNED: "<<obj.GetIsSigned() ? "YES" : "NO"; 
+    os<<"IS SIGNED: "<<(obj.GetIsSigned() ? "YES" : "NO"); 
     os <<std::endl;
     os<<"GRADE REQUIRED TO SIGN IT: "<<obj.GetGradeSign()<<std::endl;
     os<<"GRADE REQUIRED TO EXECUTE IT: "<<obj.GetGradeSign()<<std::endl;
     return os;
 }
-void Form::beSigned(Bureaucrat bureaucrat)
+void Form::beSigned(Bureaucrat &bureaucrat)
 {
     if(bureaucrat.GetGrade() > _GradeSign)
         throw GradeTooLowException();
