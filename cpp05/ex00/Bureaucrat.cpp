@@ -1,5 +1,5 @@
 #include "Bureaucrat.hpp"
-Bureaucrat::Bureaucrat():_name("unknown"),_grade(150)
+Bureaucrat::Bureaucrat()
 {
 }
 Bureaucrat::Bureaucrat(const std::string &name,short grade):_name(name)
@@ -11,7 +11,13 @@ Bureaucrat::Bureaucrat(const std::string &name,short grade):_name(name)
     else
         _grade = grade;
 }
-
+Bureaucrat::Bureaucrat(const Bureaucrat&other):_grade(other._grade),_name(other._name)
+{
+}
+Bureaucrat Bureaucrat::operator=(const Bureaucrat &other)
+{
+    _grade = other._grade;
+}
 Bureaucrat::GradeTooLowException::GradeTooLowException()
 {
 }

@@ -10,6 +10,8 @@ private:
 public:
     Bureaucrat();
     Bureaucrat(const std::string &name,short grade);
+    Bureaucrat(const Bureaucrat&other);
+    Bureaucrat operator=(const Bureaucrat &other);
     ~Bureaucrat();
     class GradeTooHighException : public std::exception
     {
