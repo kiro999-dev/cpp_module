@@ -1,8 +1,11 @@
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
-SRC = Bureaucrat.cpp main.cpp
+
+SRC = Bureaucrat.cpp main.cpp 
 OBJ = $(SRC:.cpp=.o)
-HEADERS = Bureaucrat.hpp
+
+HEADERS = Bureaucrat.hpp 
+
 NAME = Bureaucrat
 
 all: $(NAME)
@@ -20,3 +23,5 @@ fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re
