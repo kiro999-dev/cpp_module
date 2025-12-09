@@ -11,12 +11,13 @@ Bureaucrat::Bureaucrat(const std::string &name,short grade):_name(name)
     else
         _grade = grade;
 }
-Bureaucrat::Bureaucrat(const Bureaucrat&other):_grade(other._grade),_name(other._name)
+Bureaucrat::Bureaucrat(const Bureaucrat&other):_name(other._name),_grade(other._grade)
 {
 }
 Bureaucrat Bureaucrat::operator=(const Bureaucrat &other)
 {
     _grade = other._grade;
+    return *this;
 }
 Bureaucrat::GradeTooLowException::GradeTooLowException()
 {
