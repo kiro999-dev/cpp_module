@@ -8,6 +8,7 @@ class Form
 private:
     const std::string _Name;
     bool _IsSigned;
+    bool _IsExecuted;
     const short _GradeSign;
     const short _GradeExecute;
 public:
@@ -30,10 +31,13 @@ public:
     ~Form();
     const std::string &GetName() const;
     bool  GetIsSigned() const;
+    bool  GetIsExecuted() const;
     const short& GetGradeSign() const;
     const short& GetGradeExecute() const;
     void  SetIsSigned(bool );
+    void  SetIsExecuted(bool );
     void  beSigned(Bureaucrat &bureaucrat);
+    void  beExecuted(Bureaucrat &bureaucrat);
 };
 std::ostream& operator<<(std::ostream& os, const Form& obj);
 

@@ -1,9 +1,10 @@
 #include "Form.hpp"
 #include "Bureaucrat.hpp"
-Form::Form():_Name("Boss Form"),_IsSigned(0),
+Form::Form():_Name("Boss Form"),_IsSigned(false),_IsExecuted(false),
 _GradeSign(1),
-_GradeExecute(1){}
-Form::Form(std::string name,short gradeSign,short gradeExecute):_Name(name),_IsSigned(false),
+_GradeExecute(1)
+{}
+Form::Form(std::string name,short gradeSign,short gradeExecute):_Name(name),_IsSigned(false),_IsExecuted(false),
 _GradeSign(gradeSign),
 _GradeExecute(gradeExecute)
 {
@@ -12,7 +13,7 @@ _GradeExecute(gradeExecute)
     if(gradeExecute < 1 || gradeSign < 1)
         throw GradeTooHighException();
 }
-Form::Form(const Form &other):_Name(other._Name),_IsSigned(other._IsSigned),
+Form::Form(const Form &other):_Name(other._Name),_IsSigned(other._IsSigned),_IsExecuted(other._IsExecuted),
 _GradeSign(other._GradeSign),
 _GradeExecute(other._GradeExecute)
 {
@@ -20,6 +21,7 @@ _GradeExecute(other._GradeExecute)
  Form& Form::operator=(const Form&other)
 {
     _IsSigned = other._IsSigned;
+    _IsExecuted = other._IsExecuted;
     return *this;
 }
 const char *Form::GradeTooHighException::what() const throw()
@@ -38,6 +40,10 @@ bool  Form::GetIsSigned() const
 {
     return _IsSigned;
 }
+bool  Form::GetIsExecuted() const
+{
+    return _IsExecuted;
+}
 const short& Form::GetGradeSign() const
 {
     return _GradeSign;
@@ -49,6 +55,10 @@ const short& Form::GetGradeExecute() const
 void  Form::SetIsSigned(bool fact)
 {
     _IsSigned = fact;
+}
+void  Form::SetIsExecuted(bool fact)
+{
+    _IsExecuted = fact;
 }
 Form::GradeTooLowException::GradeTooLowException()
 {
@@ -64,7 +74,7 @@ std::ostream& operator<<(std::ostream& os, const Form& obj)
     os<<"IS SIGNED: "<<(obj.GetIsSigned() ? "YES" : "NO"); 
     os <<std::endl;
     os<<"GRADE REQUIRED TO SIGN IT: "<<obj.GetGradeSign()<<std::endl;
-    os<<"GRADE REQUIRED TO EXECUTE IT: "<<obj.GetGradeSign()<<std::endl;
+    os<<"GRADE REQUIRED TO EXECUTE IT: "<<obj.GetGradeExecute()<<std::endl;
     return os;
 }
 void Form::beSigned(Bureaucrat &bureaucrat)
@@ -73,6 +83,14 @@ void Form::beSigned(Bureaucrat &bureaucrat)
         throw GradeTooLowException();
     else
         _IsSigned = true;
+    
+}
+void Form::beExecuted(Bureaucrat &bureaucrat)
+{
+    if(bureaucrat.GetGrade() > _GradeExecute)
+        throw GradeTooLowException();
+    else
+        _IsExecuted = true;
     
 }
 Form::~Form(){}
