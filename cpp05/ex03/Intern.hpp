@@ -1,3 +1,5 @@
+#ifndef INTERN_HPP
+#define INTERN_HPP
 #include "AForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
@@ -7,23 +9,16 @@ class Intern
 private:
     
 public:
-   AForm *makeForm(std::string&,std::string&);
+   AForm *makeForm(const std::string&,const std::string&);
    Intern();
    Intern(Intern &other);
    Intern operator=(Intern &o);
+   ~Intern();
    class CreatFormError : public std::exception
    {
     public:
         virtual const char *what() const throw();
    };
-   
-   Intern::Intern(/* args */)
-   {
-   }
-   
-   Intern::~Intern()
-   {
-   }
-   
-   ~Intern();
 };
+
+#endif

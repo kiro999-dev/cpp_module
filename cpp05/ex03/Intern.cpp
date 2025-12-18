@@ -19,9 +19,9 @@ const char *Intern::CreatFormError::what() const throw()
 {
     return "No such a Form";
 }
-AForm *Intern::makeForm(std::string &formName, std::string &target)
+AForm *Intern::makeForm(const std::string &formName, const std::string &target)
 {
-    std::string Forms[3]="";
+    std::string Forms[3]={"shrubbery creation","robotomy request","presidential pardon"};
     int indx = -1;
     for (size_t i = 0; i < 3; i++)
     {
@@ -34,14 +34,11 @@ AForm *Intern::makeForm(std::string &formName, std::string &target)
     switch (indx)
     {
     case 1:
-
-        break;
+        return new ShrubberyCreationForm(target);
     case 2:
-
-        break;
+        return new RobotomyRequestForm(target);
     case 3:
-
-        break;
+        return new PresidentialPardonForm(target);
     default:
         throw CreatFormError();
         break;
