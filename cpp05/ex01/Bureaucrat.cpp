@@ -79,22 +79,3 @@ void Bureaucrat::signForm(Form &form)
                   << " because " << e.what() << std::endl;
     }
 }
-void Bureaucrat::ExecuteForm(Form &form)
-{
-    try
-    {
-        if (!form.GetIsSigned())
-        {
-            std::cout << _name << " couldn't execute " << form.GetName()
-                      << " because it is not signed" << std::endl;
-            return;
-        }
-        form.beExecuted(*this);
-        std::cout << _name << " executed " << form.GetName() << std::endl;
-    }
-    catch (const Form::GradeTooLowException &e)
-    {
-        std::cout << _name << " couldn't execute " << form.GetName()
-                  << " because " << e.what() << std::endl;
-    }
-}
