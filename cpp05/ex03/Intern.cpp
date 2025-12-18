@@ -15,10 +15,7 @@ Intern Intern::operator=(Intern &o)
 Intern::~Intern()
 {
 }
-const char *Intern::CreatFormError::what() const throw()
-{
-    return "No such a Form";
-}
+
 AForm *Intern::makeForm(const std::string &formName, const std::string &target)
 {
     std::string Forms[3]={"shrubbery creation","robotomy request","presidential pardon"};
@@ -40,7 +37,8 @@ AForm *Intern::makeForm(const std::string &formName, const std::string &target)
     case 3:
         return new PresidentialPardonForm(target);
     default:
-        throw CreatFormError();
+        std::cerr <<" no such a Form"<<std::endl;
+        return NULL;
         break;
     }
 }

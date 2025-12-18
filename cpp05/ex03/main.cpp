@@ -10,10 +10,15 @@ int main()
     {
         Intern someRandomIntern;
         AForm *rrf;
-        rrf = someRandomIntern.makeForm("robotssomy request", "Bender");
-        std::cout<<*rrf;
+        rrf = someRandomIntern.makeForm("robotsomy request", "Bender");
+       
         Bureaucrat a("zakaria", 5);
         Bureaucrat b("kiro", 30);
+        if(rrf)
+        {
+            rrf->beSigned(a);
+            rrf->execute(a);
+        }
         AForm *shrubbery = new ShrubberyCreationForm("tree");
         AForm *robot = new RobotomyRequestForm("robot");
         AForm *prisdent = new PresidentialPardonForm("President");
@@ -29,6 +34,7 @@ int main()
         delete shrubbery;
         delete robot;
         delete prisdent;
+     
     }
     catch (const Bureaucrat::GradeTooLowException &e)
     {
@@ -46,9 +52,10 @@ int main()
     {
         std::cerr << "AForm: " << e.what() << '\n';
     }
-    catch (const Intern::CreatFormError &e)
+    catch (const AForm::NotSignedException &e)
     {
-        std::cerr << "Intern: " << e.what() << '\n';
+        std::cerr << "AForm: " << e.what() << '\n';
+
     }
     return 0;
 }
