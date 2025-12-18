@@ -9,6 +9,8 @@ int main()
     {
         Bureaucrat a("zakaria", 5);
         Bureaucrat b("kiro", 30);
+        ShrubberyCreationForm s("soso");
+        std::cout<<s;
         AForm *shrubbery = new ShrubberyCreationForm("tree");
         AForm *robot = new RobotomyRequestForm("robot");
         AForm *prisdent = new PresidentialPardonForm("President");

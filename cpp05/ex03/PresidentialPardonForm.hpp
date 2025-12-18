@@ -21,6 +21,6 @@ public:
     std::string getTarget(void) const;
 };
 
-std::ostream &operator<<(std::ostream &o, PresidentialPardonForm *a);
+// std::ostream &operator<<(std::ostream &o, PresidentialPardonForm *a);
 
 #endif
