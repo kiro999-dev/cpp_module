@@ -28,7 +28,7 @@ std::string ShrubberyCreationForm::getTarget(void) const
 void ShrubberyCreationForm::execute(Bureaucrat const &executor) 
 {
     if (!GetIsSigned())
-        throw AForm::GradeTooLowException();
+        throw AForm::NotSignedException();
     if(executor.GetGrade() > this->GetGradeExecute())
         throw AForm::GradeTooLowException();
     std::string filename = _target + "_shrubbery";

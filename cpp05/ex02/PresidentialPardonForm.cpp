@@ -28,7 +28,7 @@ std::string PresidentialPardonForm::getTarget(void) const
 void PresidentialPardonForm::execute(Bureaucrat const &executor) 
 {
     if (!GetIsSigned())
-        throw AForm::GradeTooLowException();
+        throw AForm::NotSignedException();
     if (executor.GetGrade() > GetGradeExecute())
         throw AForm::GradeTooLowException();
     
