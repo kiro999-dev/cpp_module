@@ -25,23 +25,12 @@ std::string RobotomyRequestForm::getTarget(void) const
     return _target;
 }
 
-void RobotomyRequestForm::execute(Bureaucrat const &executor) const
+void RobotomyRequestForm::execute(Bureaucrat const &executor) 
 {
     if (!GetIsSigned())
         throw AForm::GradeTooLowException();
     if (executor.GetGrade() > GetGradeExecute())
         throw AForm::GradeTooLowException();
-    
-    std::cout << "* Drilling noises: Bzzzzzz... Vrrrrrr... Whirrrrr... *" << std::endl;
-    
-    // Seed random number generator
-    static bool seeded = false;
-    if (!seeded)
-    {
-        std::srand(std::time(0));
-        seeded = true;
-    }
-
     if (std::rand() % 2 == 0)
         std::cout <<"beebboo bobobo beee "<< _target << " has been robotomized successfully!" << std::endl;
     else

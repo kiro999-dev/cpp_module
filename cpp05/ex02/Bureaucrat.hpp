@@ -3,7 +3,7 @@
 #include <exception>
 #include <iostream>
 
-class Form;
+class AForm;
 class Bureaucrat
 {
 private:
@@ -29,8 +29,7 @@ public:
     };
     const std::string &GetName() const;
     const short&GetGrade() const;
-    void signForm( Form& form) ;
-    void ExecuteForm(Form& form);
+    void signAForm(AForm *AForm);
     void IncGrade();
     void DecGrade();
 };

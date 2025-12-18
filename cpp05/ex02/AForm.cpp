@@ -85,12 +85,5 @@ void AForm::beSigned(Bureaucrat &bureaucrat)
         _IsSigned = true;
     
 }
-void AForm::beExecuted(Bureaucrat &bureaucrat)
-{
-    if(bureaucrat.GetGrade() > _GradeExecute)
-        throw GradeTooLowException();
-    else
-        _IsExecuted = true;
-    
-}
+
 AForm::~AForm(){}

@@ -28,7 +28,7 @@ public:
             GradeTooLowException();
            virtual const char *what()  const throw();
     };
-    ~AForm();
+    virtual ~AForm();
     const std::string &GetName() const;
     bool  GetIsSigned() const;
     bool  GetIsExecuted() const;
@@ -37,7 +37,7 @@ public:
     void  SetIsSigned(bool );
     void  SetIsExecuted(bool );
     void  beSigned(Bureaucrat &bureaucrat);
-    void  beExecuted(Bureaucrat &bureaucrat);
+    virtual void execute(Bureaucrat const &executor) = 0 ;
 };
 std::ostream& operator<<(std::ostream& os, const AForm& obj);
 

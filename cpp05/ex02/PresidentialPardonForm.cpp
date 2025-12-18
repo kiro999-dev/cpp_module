@@ -25,7 +25,7 @@ std::string PresidentialPardonForm::getTarget(void) const
     return _target;
 }
 
-void PresidentialPardonForm::execute(Bureaucrat const &executor) const
+void PresidentialPardonForm::execute(Bureaucrat const &executor) 
 {
     if (!GetIsSigned())
         throw AForm::GradeTooLowException();

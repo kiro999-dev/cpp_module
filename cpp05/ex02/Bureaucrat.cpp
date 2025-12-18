@@ -1,5 +1,5 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 Bureaucrat::Bureaucrat():_name("solder"),_grade(150)
 {
 }
@@ -66,35 +66,16 @@ std::ostream &operator<<(std::ostream &os, const Bureaucrat &obj)
     os << obj.GetName() << ", bureaucrat grade " << obj.GetGrade();
     return os;
 }
-void Bureaucrat::signForm(Form &form)
+void Bureaucrat::signAForm(AForm *AForm)
 {
     try
     {
-        form.beSigned(*this);
-        std::cout << _name << " signed " << form.GetName() << std::endl;
+        AForm->beSigned(*this);
+        std::cout << _name << " signed " << AForm->GetName() << std::endl;
     }
-    catch (const Form::GradeTooLowException &e)
+    catch (const AForm::GradeTooLowException &e)
     {
-        std::cout << _name << " couldn't sign " << form.GetName()
-                  << " because " << e.what() << std::endl;
-    }
-}
-void Bureaucrat::ExecuteForm(Form &form)
-{
-    try
-    {
-        if (!form.GetIsSigned())
-        {
-            std::cout << _name << " couldn't execute " << form.GetName()
-                      << " because it is not signed" << std::endl;
-            return;
-        }
-        form.beExecuted(*this);
-        std::cout << _name << " executed " << form.GetName() << std::endl;
-    }
-    catch (const Form::GradeTooLowException &e)
-    {
-        std::cout << _name << " couldn't execute " << form.GetName()
+        std::cout << _name << " couldn't sign " << AForm->GetName()
                   << " because " << e.what() << std::endl;
     }
 }

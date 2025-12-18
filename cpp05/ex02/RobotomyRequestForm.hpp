@@ -19,7 +19,7 @@ public:
     RobotomyRequestForm(RobotomyRequestForm &src);
     ~RobotomyRequestForm();
     RobotomyRequestForm &operator=(const RobotomyRequestForm &src);
-    void execute(Bureaucrat const &executor) const;
+    void execute(Bureaucrat const &executor) ;
     std::string getTarget(void) const;
 };
 
