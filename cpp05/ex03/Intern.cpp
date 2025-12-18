@@ -30,11 +30,11 @@ AForm *Intern::makeForm(const std::string &formName, const std::string &target)
     }
     switch (indx)
     {
-    case 1:
+    case 0:
         return new ShrubberyCreationForm(target);
-    case 2:
+    case 1:
         return new RobotomyRequestForm(target);
-    case 3:
+    case 2:
         return new PresidentialPardonForm(target);
     default:
         std::cerr <<" no such a Form"<<std::endl;
