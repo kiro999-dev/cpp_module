@@ -1,0 +1,55 @@
+#include "RobotomyRequestForm.hpp"
+
+RobotomyRequestForm::RobotomyRequestForm(std::string target) 
+    : AForm("RobotomyRequestForm", 72, 45), _target(target)
+{
+}
+
+RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm &src) 
+    : AForm(src), _target(src._target)
+{
+}
+
+RobotomyRequestForm::~RobotomyRequestForm()
+{
+}
+
+RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &src)
+{
+    AForm::operator=(src);
+    return *this;
+}
+
+std::string RobotomyRequestForm::getTarget(void) const
+{
+    return _target;
+}
+
+void RobotomyRequestForm::execute(Bureaucrat const &executor) const
+{
+    if (!GetIsSigned())
+        throw AForm::GradeTooLowException();
+    if (executor.GetGrade() > GetGradeExecute())
+        throw AForm::GradeTooLowException();
+    
+    std::cout << "* Drilling noises: Bzzzzzz... Vrrrrrr... Whirrrrr... *" << std::endl;
+    
+    // Seed random number generator
+    static bool seeded = false;
+    if (!seeded)
+    {
+        std::srand(std::time(0));
+        seeded = true;
+    }
+
+    if (std::rand() % 2 == 0)
+        std::cout <<"beebboo bobobo beee "<< _target << " has been robotomized successfully!" << std::endl;
+    else
+        std::cout << "Robotomy failed on " << _target << "!" << std::endl;
+}
+
+std::ostream &operator<<(std::ostream &o, RobotomyRequestForm *a)
+{
+    o << "RobotomyRequestForm: " << a->getTarget();
+    return o;
+}
