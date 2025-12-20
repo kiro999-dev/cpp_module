@@ -1,5 +1,5 @@
 #include "Bureaucrat.hpp"
-Bureaucrat::Bureaucrat()
+Bureaucrat::Bureaucrat():_name("LowGradeBureaucrat"),_grade(150)
 {
 }
 Bureaucrat::Bureaucrat(const std::string &name,short grade):_name(name)
@@ -44,7 +44,7 @@ const std::string& Bureaucrat::GetName() const
 {
     return _name;
 }
-const short Bureaucrat::GetGrade() const
+ short Bureaucrat::GetGrade() const
 {
     return _grade;
 }
