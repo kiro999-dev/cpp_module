@@ -37,7 +37,7 @@ const char *Bureaucrat::GradeTooLowException::what() const throw()
 
 Bureaucrat::~Bureaucrat()
 {
-    std::cout << "destructor has been called" << std::endl;
+    std::cout << "Bureaucrat destructor has been called" << std::endl;
 }
 const std::string &Bureaucrat::GetName() const
 {

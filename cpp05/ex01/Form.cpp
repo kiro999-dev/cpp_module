@@ -93,4 +93,7 @@ void Form::beExecuted(Bureaucrat &bureaucrat)
         _IsExecuted = true;
     
 }
-Form::~Form(){}
+Form::~Form()
+{
+    std::cout << "Form destructor has been called" << std::endl;
+}
