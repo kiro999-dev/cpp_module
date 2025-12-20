@@ -27,8 +27,9 @@ public:
             GradeTooLowException();
            virtual const char *what()  const throw();
     };
+  
     const std::string &GetName() const;
-    const short&GetGrade() const;
+    short GetGrade() const;
     void signForm( Form& form) ;
     void IncGrade();
     void DecGrade();

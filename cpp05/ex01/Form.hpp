@@ -12,7 +12,7 @@ private:
     const short _GradeSign;
     const short _GradeExecute;
 public:
-    Form(std::string,short,short);
+    Form(const std::string&,short,short);
     Form();
     Form(const Form&other);
     Form &operator=(const Form&other);
@@ -32,12 +32,12 @@ public:
     const std::string &GetName() const;
     bool  GetIsSigned() const;
     bool  GetIsExecuted() const;
-    const short& GetGradeSign() const;
-    const short& GetGradeExecute() const;
+    short GetGradeSign() const;
+    short GetGradeExecute() const;
     void  SetIsSigned(bool );
     void  SetIsExecuted(bool );
     void  beSigned(Bureaucrat &bureaucrat);
-    void  beExecuted(Bureaucrat &bureaucrat);
+
 };
 std::ostream& operator<<(std::ostream& os, const Form& obj);
 

@@ -17,15 +17,12 @@ Bureaucrat::Bureaucrat(const Bureaucrat &other) : _name(other._name), _grade(oth
 }
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
 {
-    _grade = other._grade;
+    if (this != &other)
+        _grade = other._grade;
     return *this;
 }
-Bureaucrat::GradeTooLowException::GradeTooLowException()
-{
-}
-Bureaucrat::GradeTooHighException::GradeTooHighException()
-{
-}
+Bureaucrat::GradeTooLowException::GradeTooLowException(){}
+Bureaucrat::GradeTooHighException::GradeTooHighException(){}
 const char *Bureaucrat::GradeTooHighException::what() const throw()
 {
     return "Grade Too High";
@@ -35,6 +32,7 @@ const char *Bureaucrat::GradeTooLowException::what() const throw()
     return "Grade Too Low";
 }
 
+
 Bureaucrat::~Bureaucrat()
 {
     std::cout << "Bureaucrat destructor has been called" << std::endl;
@@ -43,7 +41,7 @@ const std::string &Bureaucrat::GetName() const
 {
     return _name;
 }
-const short &Bureaucrat::GetGrade() const
+short Bureaucrat::GetGrade() const
 {
     return _grade;
 }
