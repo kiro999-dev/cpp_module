@@ -1,23 +1,28 @@
 #include "Bureaucrat.hpp"
 Bureaucrat::Bureaucrat():_name("LowGradeBureaucrat"),_grade(150)
 {
+    std::cout<<"default constructor has been called"<<std::endl;
 }
 Bureaucrat::Bureaucrat(const std::string &name,short grade):_name(name)
 {
+
     if(grade < 1)
         throw GradeTooHighException();
     else if(grade > 150)
         throw GradeTooLowException();
     else
         _grade = grade;
+     std::cout<<name<<" constructor has been called"<<std::endl;
 }
 Bureaucrat::Bureaucrat(const Bureaucrat&other):_name(other._name),_grade(other._grade)
 {
+    std::cout<<"copy constructor has been called"<<std::endl;
 }
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat &other)
 {
     if (this != &other)
         _grade = other._grade;
+    std::cout<<"assignment operator has been called"<<std::endl;
     return *this;
 }
 Bureaucrat::GradeTooLowException::GradeTooLowException()

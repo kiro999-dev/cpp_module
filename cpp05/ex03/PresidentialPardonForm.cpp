@@ -1,22 +1,30 @@
 #include "PresidentialPardonForm.hpp"
-
-PresidentialPardonForm::PresidentialPardonForm(const std::string &target) 
+PresidentialPardonForm::PresidentialPardonForm() 
+    : AForm("PresidentialPardonForm", 25, 5), _target("default")
+{
+    std::cout<<"default PresidentialPardonForm constructor has been called"<<std::endl;
+}
+PresidentialPardonForm::PresidentialPardonForm(std::string target) 
     : AForm("PresidentialPardonForm", 25, 5), _target(target)
 {
+    std::cout<<target<<" PresidentialPardonForm constructor has been called"<<std::endl;
 }
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &src) 
     : AForm(src), _target(src._target)
 {
+     std::cout<<"PresidentialPardonForm copy constructor has been called"<<std::endl;
 }
 
 PresidentialPardonForm::~PresidentialPardonForm()
 {
+     std::cout<<"PresidentialPardonForm destructor has been called"<<std::endl;
 }
 
 PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPardonForm &src)
 {
     AForm::operator=(src);
+     std::cout<<"PresidentialPardonForm assignment operator  has been called"<<std::endl;
     return *this;
 }
 
@@ -33,10 +41,4 @@ void PresidentialPardonForm::execute(Bureaucrat const &executor)
         throw AForm::GradeTooLowException();
     std::cout << _target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
     this->SetIsExecuted(true);
-}
-
-std::ostream &operator<<(std::ostream &o, PresidentialPardonForm *a)
-{
-    o << "PresidentialPardonForm: " << a->getTarget();
-    return o;
 }

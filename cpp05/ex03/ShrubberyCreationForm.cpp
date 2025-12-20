@@ -1,22 +1,31 @@
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target) 
+ShrubberyCreationForm::ShrubberyCreationForm() 
+    : AForm("ShrubberyCreationForm", 145,137), _target("default")
+{
+    std::cout<<"default ShrubberyCreationForm constructor has been called"<<std::endl;
+}
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) 
     : AForm("ShrubberyCreationForm", 145, 137), _target(target)
 {
+    std::cout<<target<<" ShrubberyCreationForm constructor has been called"<<std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &src) 
     : AForm(src), _target(src._target)
 {
+     std::cout<<"ShrubberyCreationForm copy constructor has been called"<<std::endl;
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {
+     std::cout<<"ShrubberyCreationForm destructor has been called"<<std::endl;
 }
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &src)
 {
     AForm::operator=(src);
+     std::cout<<"ShrubberyCreationForm assignment operator  has been called"<<std::endl;
     return *this;
 }
 
@@ -59,10 +68,4 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor)
     outfile.close();
     std::cout << "Shrubbery has been planted at " << _target << std::endl;
     this->SetIsExecuted(true);
-}
-
-std::ostream &operator<<(std::ostream &o, ShrubberyCreationForm *a)
-{
-    o << "ShrubberyCreationForm: " << a->getTarget();
-    return o;
 }

@@ -14,6 +14,7 @@ private:
     const std::string _target;
 public:
     PresidentialPardonForm(std::string target);
+    PresidentialPardonForm();
     PresidentialPardonForm(const PresidentialPardonForm &src);
     ~PresidentialPardonForm();
     PresidentialPardonForm &operator=(const PresidentialPardonForm &src);

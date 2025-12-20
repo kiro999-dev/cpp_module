@@ -1,25 +1,32 @@
 #include "RobotomyRequestForm.hpp"
-
-RobotomyRequestForm::RobotomyRequestForm(std::string target)
+RobotomyRequestForm::RobotomyRequestForm() 
+    : AForm("RobotomyRequestForm", 72, 45), _target("default")
+{
+    std::cout<<"default RobotomyRequestForm constructor has been called"<<std::endl;
+}
+RobotomyRequestForm::RobotomyRequestForm(std::string target) 
     : AForm("RobotomyRequestForm", 72, 45), _target(target)
 {
+    std::cout<<target<<" RobotomyRequestForm constructor has been called"<<std::endl;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &src)
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &src) 
     : AForm(src), _target(src._target)
 {
+     std::cout<<"RobotomyRequestForm copy constructor has been called"<<std::endl;
 }
 
 RobotomyRequestForm::~RobotomyRequestForm()
 {
+     std::cout<<"RobotomyRequestForm destructor has been called"<<std::endl;
 }
 
 RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &src)
 {
     AForm::operator=(src);
+     std::cout<<"RobotomyRequestForm assignment operator  has been called"<<std::endl;
     return *this;
 }
-
 std::string RobotomyRequestForm::getTarget(void) const
 {
     return _target;
@@ -36,10 +43,4 @@ void RobotomyRequestForm::execute(Bureaucrat const &executor)
     else
         std::cout << "Robotomy failed on " << _target << "!" << std::endl;
     this->SetIsExecuted(true);
-}
-
-std::ostream &operator<<(std::ostream &o, RobotomyRequestForm *a)
-{
-    o << "RobotomyRequestForm: " << a->getTarget();
-    return o;
 }

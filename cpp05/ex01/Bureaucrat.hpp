@@ -30,7 +30,6 @@ public:
   
     const std::string &GetName() const;
     short GetGrade() const;
-    void signForm( Form& form) ;
     void IncGrade();
     void DecGrade();
 };

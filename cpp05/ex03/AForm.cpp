@@ -4,6 +4,7 @@ AForm::AForm() : _Name("Boss AForm"), _IsSigned(false), _IsExecuted(false),
                  _GradeSign(1),
                  _GradeExecute(1)
 {
+    std::cout<<"default AForm constructor has been called"<<std::endl;
 }
 AForm::AForm(const std::string name, short gradeSign, short gradeExecute) : _Name(name), _IsSigned(false), _IsExecuted(false),
                                                                             _GradeSign(gradeSign),
@@ -13,11 +14,13 @@ AForm::AForm(const std::string name, short gradeSign, short gradeExecute) : _Nam
         throw GradeTooLowException();
     if (gradeExecute < 1 || gradeSign < 1)
         throw GradeTooHighException();
+    std::cout<<name<<" AForm constructor has been called"<<std::endl;
 }
 AForm::AForm(const AForm &other) : _Name(other._Name), _IsSigned(other._IsSigned), _IsExecuted(other._IsExecuted),
                                    _GradeSign(other._GradeSign),
                                    _GradeExecute(other._GradeExecute)
 {
+      std::cout<<" AForm  copy constructor has been called"<<std::endl;
 }
 AForm &AForm::operator=(const AForm &other)
 {
@@ -25,6 +28,7 @@ AForm &AForm::operator=(const AForm &other)
         return *this;
     _IsSigned = other._IsSigned;
     _IsExecuted = other._IsExecuted;
+    std::cout<<" AForm  assignment operator has been called"<<std::endl;
     return *this;
 }
 const char *AForm::GradeTooHighException::what() const throw()

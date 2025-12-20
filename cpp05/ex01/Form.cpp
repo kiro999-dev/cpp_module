@@ -4,6 +4,7 @@ Form::Form() : _Name("Boss Form"), _IsSigned(false), _IsExecuted(false),
                _GradeSign(1),
                _GradeExecute(1)
 {
+     std::cout<<"Boss Form constructor has been called"<<std::endl;
 }
 Form::Form(const std::string &name, short gradeSign, short gradeExecute) : _Name(name), _IsSigned(false), _IsExecuted(false),
                                                                      _GradeSign(gradeSign),
@@ -13,11 +14,14 @@ Form::Form(const std::string &name, short gradeSign, short gradeExecute) : _Name
         throw GradeTooLowException();
     if (gradeExecute < 1 || gradeSign < 1)
         throw GradeTooHighException();
+    
+    std::cout<<name<<"Form constructor has been called"<<std::endl;
 }
 Form::Form(const Form &other) : _Name(other._Name), _IsSigned(other._IsSigned), _IsExecuted(other._IsExecuted),
                                 _GradeSign(other._GradeSign),
                                 _GradeExecute(other._GradeExecute)
 {
+         std::cout<<"Form  copy constructor has been called"<<std::endl;
 }
 Form &Form::operator=(const Form &other)
 {
@@ -25,6 +29,7 @@ Form &Form::operator=(const Form &other)
         return *this;
     _IsSigned = other._IsSigned;
     _IsExecuted = other._IsExecuted;
+     std::cout<<"Form  assignment operator has been called"<<std::endl;
     return *this;
 }
 const char *Form::GradeTooHighException::what() const throw()
