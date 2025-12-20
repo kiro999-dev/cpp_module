@@ -22,11 +22,7 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat &other)
 }
 Bureaucrat::GradeTooLowException::GradeTooLowException(){}
 Bureaucrat::GradeTooHighException::GradeTooHighException(){}
-Bureaucrat::NotSignedException::NotSignedException(){}
-const char *Bureaucrat::NotSignedException::what() const throw()
-{
-    return "Not Signed";
-}
+
 const char *Bureaucrat::GradeTooHighException::what() const throw()
 {
     return "Grade Too High";

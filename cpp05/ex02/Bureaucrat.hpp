@@ -26,12 +26,6 @@ public:
         GradeTooLowException();
         virtual const char *what() const throw();
     };
-    class NotSignedException : public std::exception
-    {
-    public:
-        NotSignedException();
-        virtual const char *what() const throw();
-    };
     const std::string &GetName() const;
     short GetGrade() const;
     void IncGrade();

@@ -5,7 +5,7 @@ PresidentialPardonForm::PresidentialPardonForm(std::string target)
 {
 }
 
-PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm &src) 
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &src) 
     : AForm(src), _target(src._target)
 {
 }

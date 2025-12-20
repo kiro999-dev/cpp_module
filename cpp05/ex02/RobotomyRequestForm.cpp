@@ -5,7 +5,7 @@ RobotomyRequestForm::RobotomyRequestForm(std::string target)
 {
 }
 
-RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm &src)
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &src)
     : AForm(src), _target(src._target)
 {
 }
