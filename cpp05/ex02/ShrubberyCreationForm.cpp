@@ -58,6 +58,7 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor)
     
     outfile.close();
     std::cout << "Shrubbery has been planted at " << _target << std::endl;
+    this->SetIsExecuted(true);
 }
 
 std::ostream &operator<<(std::ostream &o, ShrubberyCreationForm *a)

@@ -35,6 +35,7 @@ void RobotomyRequestForm::execute(Bureaucrat const &executor)
         std::cout <<"beebboo bobobo beee "<< _target << " has been robotomized successfully!" << std::endl;
     else
         std::cout << "Robotomy failed on " << _target << "!" << std::endl;
+    this->SetIsExecuted(true);
 }
 
 std::ostream &operator<<(std::ostream &o, RobotomyRequestForm *a)
