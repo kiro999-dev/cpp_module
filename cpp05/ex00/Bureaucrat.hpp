@@ -12,7 +12,7 @@ public:
     Bureaucrat();
     Bureaucrat(const std::string &name, short grade);
     Bureaucrat(const Bureaucrat &other);
-    Bureaucrat operator=(const Bureaucrat &other);
+    Bureaucrat &operator=(const Bureaucrat &other);
     ~Bureaucrat();
     class GradeTooHighException : public std::exception
     {
@@ -27,7 +27,7 @@ public:
         virtual const char *what() const throw();
     };
     const std::string &GetName() const;
-    const short &GetGrade() const;
+    const short GetGrade() const;
     void IncGrade();
     void DecGrade();
 };
