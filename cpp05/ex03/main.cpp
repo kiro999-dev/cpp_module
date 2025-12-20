@@ -4,58 +4,54 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+void cleanupForms(AForm* rrf, AForm* shrubbery, AForm* prisdent)
+{
+    delete rrf;
+    delete shrubbery;
+    delete prisdent;
+}
+
 int main()
 {
+    AForm *shrubbery = NULL;
+    AForm *prisdent = NULL;
+    AForm *rrf = NULL;
+    std::srand(std::time(NULL));
+    
     try
     {
         Intern someRandomIntern;
-        AForm *rrf;
-        rrf = someRandomIntern.makeForm("robotsomy request", "Bender");
-       
+        rrf = someRandomIntern.makeForm("robotomy request", "Bender");
         Bureaucrat a("zakaria", 5);
         Bureaucrat b("kiro", 30);
-        if(rrf)
+        
+        if (rrf)
         {
+            std::cout<<*rrf;
             rrf->beSigned(a);
             rrf->execute(a);
         }
-        AForm *shrubbery = new ShrubberyCreationForm("tree");
-        AForm *robot = new RobotomyRequestForm("robot");
-        AForm *prisdent = new PresidentialPardonForm("President");
+        
+        shrubbery = new ShrubberyCreationForm("tree");
+        prisdent = new PresidentialPardonForm("President");
         shrubbery->beSigned(a);
         shrubbery->execute(b);
-        robot->beSigned(a);
-        robot->execute(b);
         prisdent->beSigned(a);
         prisdent->execute(a);
         std::cout << *shrubbery << std::endl;
-        std::cout << *robot << std::endl;
         std::cout << *prisdent << std::endl;
-        delete shrubbery;
-        delete robot;
-        delete prisdent;
-     
+        cleanupForms(rrf, shrubbery, prisdent);
     }
-    catch (const Bureaucrat::GradeTooLowException &e)
+    catch (const std::exception &e)
     {
-        std::cerr << "Bureaucrat: " << e.what() << '\n';
+        std::cerr << "Exception: " << e.what() << '\n';
+        cleanupForms(rrf, shrubbery, prisdent);
     }
-    catch (const Bureaucrat::GradeTooHighException &e)
+    catch (...)  
     {
-        std::cerr << "Bureaucrat: " << e.what() << '\n';
+        std::cerr << "Unknown exception occurred\n";
+        cleanupForms(rrf, shrubbery, prisdent);
     }
-    catch (const AForm::GradeTooLowException &e)
-    {
-        std::cerr << "AForm: " << e.what() << '\n';
-    }
-    catch (const AForm::GradeTooHighException &e)
-    {
-        std::cerr << "AForm: " << e.what() << '\n';
-    }
-    catch (const AForm::NotSignedException &e)
-    {
-        std::cerr << "AForm: " << e.what() << '\n';
-
-    }
+    
     return 0;
 }

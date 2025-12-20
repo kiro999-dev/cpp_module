@@ -3,11 +3,11 @@
 Intern::Intern()
 {
 }
-Intern::Intern(Intern &o)
+Intern::Intern(const Intern &o)
 {
     (void)o;
 }
-Intern Intern::operator=(Intern &o)
+Intern &Intern::operator=(Intern &o)
 {
     (void)o;
     return *this;

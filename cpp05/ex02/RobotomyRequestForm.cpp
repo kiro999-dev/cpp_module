@@ -27,7 +27,6 @@ std::string RobotomyRequestForm::getTarget(void) const
 
 void RobotomyRequestForm::execute(Bureaucrat const &executor)
 {
-    std::srand(std::time(NULL));
     if (!GetIsSigned())
         throw AForm::NotSignedException();
     if (executor.GetGrade() > GetGradeExecute())

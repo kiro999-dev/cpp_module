@@ -4,9 +4,8 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
-void cleanupForms(AForm* rrf, AForm* shrubbery, AForm* robot, AForm* prisdent)
+void cleanupForms(AForm* shrubbery, AForm* robot, AForm* prisdent)
 {
-    delete rrf;
     delete shrubbery;
     delete robot;
     delete prisdent;
@@ -17,8 +16,7 @@ int main()
     AForm *shrubbery = NULL;
     AForm *robot = NULL;
     AForm *prisdent = NULL;
-    AForm *rrf = NULL;
-    
+    std::srand(std::time(NULL));
     try
     {
         Bureaucrat a("zakaria", 5);
@@ -37,17 +35,17 @@ int main()
         std::cout << *shrubbery << std::endl;
         std::cout << *robot << std::endl;
         std::cout << *prisdent << std::endl;
-        cleanupForms(rrf, shrubbery, robot, prisdent);
+        cleanupForms(shrubbery, robot, prisdent);
     }
     catch (const std::exception &e)
     {
         std::cerr << "Exception: " << e.what() << '\n';
-        cleanupForms(rrf, shrubbery, robot, prisdent);
+        cleanupForms(shrubbery, robot, prisdent);
     }
     catch (...)  
     {
         std::cerr << "Unknown exception occurred\n";
-        cleanupForms(rrf, shrubbery, robot, prisdent);
+        cleanupForms(shrubbery, robot, prisdent);
     }
     
     return 0;

@@ -12,7 +12,7 @@ private:
     const short _GradeSign;
     const short _GradeExecute;
 public:
-    AForm(std::string,short,short);
+    AForm(const std::string,short,short);
     AForm();
     AForm(const AForm&other);
     AForm &operator=(const AForm&other);
@@ -33,16 +33,18 @@ public:
         public:
            virtual const char *what()  const throw();
     };
-    virtual ~AForm();
-    const std::string &GetName() const;
-    bool  GetIsSigned() const;
-    bool  GetIsExecuted() const;
-    const short& GetGradeSign() const;
-    const short& GetGradeExecute() const;
-    void  SetIsSigned(bool );
-    void  SetIsExecuted(bool );
-    void  beSigned(Bureaucrat &bureaucrat);
-    virtual void execute(Bureaucrat const &executor) = 0 ;
+    protected:
+           void  SetIsSigned(bool );
+            void  SetIsExecuted(bool );
+    public:
+        virtual ~AForm();
+        const std::string &GetName() const;
+        bool  GetIsSigned() const;
+        bool  GetIsExecuted() const;
+        short GetGradeSign() const;
+        short GetGradeExecute() const;
+        void  beSigned(Bureaucrat &bureaucrat);
+        virtual void execute(Bureaucrat const &executor) = 0 ;
 };
 std::ostream& operator<<(std::ostream& os, const AForm& obj);
 
