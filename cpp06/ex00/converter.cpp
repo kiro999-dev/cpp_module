@@ -80,6 +80,69 @@ void ConvertChar(const std::string &inpute)
     else
         std::cout << "Non displayable" << std::endl;
 }
+#include <iostream>
+#include <iomanip>  // C++98 standard header
+#include <cstdlib>  // for atoll (or use atol in C++98)
+
+void ConvertInt(const std::string &inpute)
+{
+    long long num = std::atoll(inpute.c_str());
+    
+    std::cout << "char: ";
+    if(num > 0 && num < 127)
+    {
+        if(isprint(num))
+        {
+            std::cout << "'" << static_cast<char>(num) << "'" << std::endl;
+        }
+        else
+            std::cout << "Non displayable" << std::endl;
+    }
+    else
+        std::cout << "Impossible" << std::endl;
+        
+    std::cout << "int: ";
+    if(num > MAX_INT || num < MIN_INT)
+         std::cout << "Impossible" << std::endl;
+    else
+        std::cout << static_cast<int>(num) << std::endl;
+        
+    std::cout << "float: " << std::fixed << std::setprecision(1) 
+              << static_cast<float>(num) << "f" << std::endl;
+              
+    std::cout << "double: " << std::fixed << std::setprecision(1) 
+              << static_cast<double>(num) << std::endl;
+}
+void ConvertFloat(const std::string &inpute)
+{
+    double num = std::atof(inpute.c_str());
+    
+    std::cout << "char: ";
+    if(num > 0 && num < 127)
+    {
+        if(isprint(num))
+        {
+            std::cout << "'" << static_cast<char>(num) << "'" << std::endl;
+        }
+        else
+            std::cout << "Non displayable" << std::endl;
+    }
+    else
+        std::cout << "Impossible" << std::endl;
+        
+    std::cout << "int: ";
+    if(num > MAX_FLOAT || num < MIN_FLOAT)
+         std::cout << "Impossible" << std::endl;
+    else
+        std::cout << static_cast<int>(num) << std::endl;
+        
+    std::cout << "float: " << std::fixed << std::setprecision(4) 
+              << static_cast<float>(num) << "f" << std::endl;
+              
+    std::cout << "double: " << std::fixed << std::setprecision(4) 
+              << static_cast<double>(num) << std::endl;
+}
+
 int main(int arc, char **argv)
 {
     std::string str = argv[1];
@@ -90,11 +153,11 @@ int main(int arc, char **argv)
     }
     if (s == int_type)
     {
-        std::cout << "its int\n";
+        ConvertInt(str);
     }
     if (s == float_type)
     {
-        std::cout << "its float\n";
+       ConvertFloat(str);
     }
     if (s == double_type)
     {
