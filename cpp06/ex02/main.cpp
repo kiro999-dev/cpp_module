@@ -11,7 +11,7 @@ Base * generate(void)
     {
         ptr = new A;
     }
-    else if(random % 3 == 0)
+    else if(random % 3 == 1)
         ptr = new B;
     else
         ptr = new C;
@@ -33,24 +33,23 @@ void identify(Base& p)
 {
     try
     {
-        A &AType = dynamic_cast<A&>(p);
+        (void) dynamic_cast<A&>(p);
         std::cout<<"Type: A"<<std::endl;
     }
     catch(const std::exception& e)
     {
-        
     }
     try
     {
-        B &BType = dynamic_cast<B&>(p);
-        std::cout<<"Type: C"<<std::endl;
+       (void) dynamic_cast<B&>(p);
+        std::cout<<"Type: B"<<std::endl;
     }
     catch(const std::exception& e)
     {
     }
     try
     {
-        C &CType = dynamic_cast<C&>(p);
+       (void) dynamic_cast<C&>(p);
         std::cout<<"Type: C"<<std::endl;
     }
     catch(const std::exception& e)
@@ -62,6 +61,7 @@ int main()
 {
     Base *ptr = generate();
     identify(ptr);
-    A aclass;
+    B aclass;
     identify(aclass);
+    delete ptr;
 }
