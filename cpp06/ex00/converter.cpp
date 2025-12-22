@@ -4,17 +4,17 @@
 #include <iomanip>
 #include <cstdlib>
 #include <limits>
-bool isInfiniteDouble(double x)
+bool  isInfiniteDouble(double x)
 {
     return x == std::numeric_limits<double>::infinity() ||
            x == -std::numeric_limits<double>::infinity();
 }
-bool isInfinite(float x)
+bool  isInfinite(float x)
 {
     return x == std::numeric_limits<float>::infinity() ||
            x == -std::numeric_limits<float>::infinity();
 }
-int countChar(const std::string &str, char target)
+int  countChar(const std::string &str, char target)
 {
     int count = 0;
     for (size_t i = 0; i < str.size(); i++)
@@ -26,22 +26,24 @@ int countChar(const std::string &str, char target)
     }
     return count;
 }
-bool isValidNumber(const std::string &inpute)
+bool  isValidNumber(const std::string &inpute)
 {
     bool float_flag = 0;
-    for (size_t i = 0; i < inpute.length(); i++)
+    size_t sign = 0;
+    if(inpute.size() > 1 && (inpute[0] == '+' || inpute[0] == '-'))
+        sign++;
+    for (size_t i = sign; i < inpute.length(); i++)
     {
         if (float_flag)
             return false;
-        if (!isalnum(inpute[i]) && inpute[i] != '.' && inpute[i] != 'f' &&
-            inpute[i] != '-' && inpute[i] != '+')
+        if (!isdigit(inpute[i]) && inpute[i] != '.' && inpute[i] != 'f')
             return false;
         if (inpute[i] == 'f')
             float_flag = 1;
     }
     return true;
 }
-bool isScienceType(const std::string &inpute)
+bool   isScienceType(const std::string &inpute)
 {
     std::string sicnce_types[6] = {"-inff", "+inff", "nanf", "-inf", "+inf", "nan"};
     for (size_t i = 0; i < 6; i++)
@@ -51,7 +53,7 @@ bool isScienceType(const std::string &inpute)
     }
     return false;
 }
-enum types inputType(const std::string &inpute)
+enum types  inputType(const std::string &inpute)
 {
     if (inpute.empty())
         return invalid_type;
@@ -80,7 +82,7 @@ enum types inputType(const std::string &inpute)
         return int_type;
     return invalid_type;
 }
-void ConvertChar(const std::string &inpute)
+void static ConvertChar(const std::string &inpute)
 {
     char c = inpute[0];
     std::cout << "char: ";
@@ -94,16 +96,17 @@ void ConvertChar(const std::string &inpute)
     else
         std::cout << "Non displayable" << std::endl;
 }
-void ConvertInt(const std::string &inpute)
+void static ConvertInt(const std::string &inpute)
 {
     char *end;
     errno = 0;
     long num = std::strtol(inpute.c_str(), &end, 10);
-    if (errno == ERANGE) {
-        std::cout << "char: Impossible" << std::endl;
-        std::cout << "int: Impossible" << std::endl;
-        std::cout << "float: Impossible" << std::endl;
-        std::cout << "double: Impossible" << std::endl;
+    if (errno == ERANGE)
+    {
+        std::cout << "char: impossible" << std::endl;
+        std::cout << "int: impossible" << std::endl;
+        std::cout << "float: impossible" << std::endl;
+        std::cout << "double: impossible" << std::endl;
         return;
     }
     std::cout << "char: ";
@@ -117,11 +120,11 @@ void ConvertInt(const std::string &inpute)
             std::cout << "Non displayable" << std::endl;
     }
     else
-        std::cout << "Impossible" << std::endl;
+        std::cout << "impossible" << std::endl;
 
     std::cout << "int: ";
     if (num > MAX_INT || num < MIN_INT)
-        std::cout << "Impossible" << std::endl;
+        std::cout << "impossible" << std::endl;
     else
         std::cout << static_cast<int>(num) << std::endl;
 
@@ -131,65 +134,87 @@ void ConvertInt(const std::string &inpute)
     std::cout << "double: " << std::fixed << std::setprecision(1)
               << static_cast<double>(num) << std::endl;
 }
-void ConvertFloat(const std::string &inpute)
+void static ConvertFloat(const std::string &inpute)
 {
     double num = std::atof(inpute.c_str());
     std::cout << "char: ";
     if (num > 0 && num < 127)
     {
         if (isprint(num))
-        {
             std::cout << "'" << static_cast<char>(num) << "'" << std::endl;
-        }
         else
             std::cout << "Non displayable" << std::endl;
     }
     else
-        std::cout << "Impossible" << std::endl;
+        std::cout << "impossible" << std::endl;
 
     std::cout << "int: ";
     if (static_cast<long>(num) > MAX_INT || static_cast<long>(num) < MIN_INT)
-        std::cout << "Impossible" << std::endl;
+        std::cout << "impossible" << std::endl;
     else
         std::cout << static_cast<int>(num) << std::endl;
     std::cout << "float: ";
     if (num > MAX_FLOAT || num < MIN_FLOAT)
-        std::cout << "Impossible" << std::endl;
+        std::cout << "impossible" << std::endl;
     else
         std::cout << std::fixed << std::setprecision(4)
                   << static_cast<float>(num) << "f" << std::endl;
     std::cout << "double: ";
     if (isInfiniteDouble(num))
-        std::cout << "Impossible" << std::endl;
+        std::cout << "impossible" << std::endl;
     else
         std::cout << std::fixed << std::setprecision(4)
                   << static_cast<double>(num) << std::endl;
 }
-
-int main(int arc, char **argv)
+void static convertScience(const std::string &inpute)
 {
-    std::string str = argv[1];
+    int indx = -1;
+    std::string sicnce_types[6] = {"-inff", "+inff", "nanf", "-inf", "+inf", "nan"};
+    for (size_t i = 0; i < 6; i++)
+    {
+        if (sicnce_types[i] == inpute)
+        {
+            indx = i;
+            break;
+        }
+    }
+    std::cout << "char: impossible" << std::endl;
+    std::cout << "int: impossible" << std::endl;
+    if (indx <= 2)
+    {
+        std::cout << "float: " << inpute << std::endl;
+        std::cout << "double: " << inpute.substr(0, inpute.size() - 1) << std::endl;
+    }
+    else
+    {
+        std::cout << "float: " << inpute + 'f' << std::endl;
+        std::cout << "double: " << inpute << std::endl;
+    }
+}
+void converter(const std::string &str)
+{
     types s = inputType(str);
-    if (s == char_type)
+    switch (s)
     {
+    case char_type:
         ConvertChar(str);
-    }
-    if (s == int_type)
-    {
+        break;
+    case int_type:
         ConvertInt(str);
-    }
-    if (s == float_type)
-    {
+        break;
+    case float_type:
         ConvertFloat(str);
-    }
-    if (s == double_type)
-    {
+        break;
+    case double_type:
         ConvertFloat(str);
+        break;
+    case science_type:
+        convertScience(str);
+        break;
+    case invalid_type:
+        std::cout << "its invalid type" << std::endl;
+        break;
+    default:
+        break;
     }
-    if (s == science_type)
-    {
-        std::cout << "its science_type\n";
-    }
-    if (s == invalid_type)
-        std::cout << "its invalid_type\n";
 }

@@ -2,7 +2,7 @@
 #define CONVERTER_HPP
 # include <limits>
 # include <cmath>
-
+#include <iostream>
 # define MIN_INT std::numeric_limits<int>::min() 
 # define MAX_INT std::numeric_limits<int>::max()
 # define MIN_FLOAT std::numeric_limits<float>::min()
@@ -18,4 +18,5 @@ enum types
     invalid_type =5,
     science_type = 6
 };
+void converter(const std::string &str);
 #endif
