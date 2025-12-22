@@ -60,5 +60,8 @@ void identify(Base& p)
 }
 int main()
 {
-    
+    Base *ptr = generate();
+    identify(ptr);
+    A aclass;
+    identify(aclass);
 }

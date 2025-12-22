@@ -1,12 +1,12 @@
 CXX     = c++
 CXXFLAGS = -Wall -Wextra -Werror 
 
-NAME    = Serializer
+NAME    = typeof
 
-SRC     = main.cpp Serializer.cpp
+SRC     = main.cpp Base.cpp
 OBJ     = $(SRC:.cpp=.o)
 
-HEADERS = Serializer.hpp main.hpp
+HEADERS = A.hpp B.hpp C.hpp Base.hpp 
 
 all: $(NAME)
 
