@@ -1,5 +1,5 @@
 #ifndef SERIALIZER
-#define SEARIALZER
+#define SERIALIZER
 #include <cstdint>
 #include <iostream>
 #include "Data.hpp"

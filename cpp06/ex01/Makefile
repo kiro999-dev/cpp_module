@@ -1,26 +1,26 @@
-CC = c++
-FLAGS = -Wall -Wextra -Werror -std=c++98
+CXX     = c++
+CXXFLAGS = -Wall -Wextra -Werror 
 
-SRC = main.cpp  Serializer.cpp
-OBJ = $(SRC:.cpp=.o)
+NAME    = Serializer
 
-HEADERS = main.hpp Serializer.hpp
+SRC     = main.cpp Serializer.cpp
+OBJ     = $(SRC:.cpp=.o)
 
-NAME = Serializer
+HEADERS = Serializer.hpp main.hpp
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
 %.o: %.cpp $(HEADERS)
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJ)
+	rm -f $(OBJ)
 
 fclean: clean
-	$(RM) $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
 

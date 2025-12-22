@@ -1,4 +1,4 @@
-CC = c++
+CXX = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRC = main.cpp converter.cpp ScalarConverter.cpp
@@ -11,10 +11,10 @@ NAME = converte
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
+	$(CXX) $(FLAGS) $(OBJ) -o $(NAME)
 
 %.o: %.cpp $(HEADERS)
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CXX) $(FLAGS) -c $< -o $@
 
 clean:
 	$(RM) $(OBJ)
