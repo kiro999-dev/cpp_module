@@ -1,6 +1,5 @@
 #include "converter.hpp"
 #include <iostream>
-#include <iostream>
 #include <iomanip>
 #include <cstdlib>
 #include <limits>
@@ -110,7 +109,7 @@ void static ConvertInt(const std::string &inpute)
         return;
     }
     std::cout << "char: ";
-    if (num > 0 && num < 127)
+    if (num >= 0 && num <= 127)
     {
         if (isprint(num))
         {
@@ -138,7 +137,7 @@ void static ConvertFloat(const std::string &inpute)
 {
     double num = std::atof(inpute.c_str());
     std::cout << "char: ";
-    if (num > 0 && num < 127)
+    if (num >= 0 && num <= 127)
     {
         if (isprint(num))
             std::cout << "'" << static_cast<char>(num) << "'" << std::endl;
@@ -154,7 +153,7 @@ void static ConvertFloat(const std::string &inpute)
     else
         std::cout << static_cast<int>(num) << std::endl;
     std::cout << "float: ";
-    if (num > MAX_FLOAT || num < MIN_FLOAT)
+    if (num > MAX_FLOAT || num < -MAX_FLOAT)
         std::cout << "impossible" << std::endl;
     else
         std::cout << std::fixed << std::setprecision(4)
