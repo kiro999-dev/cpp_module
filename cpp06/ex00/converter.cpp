@@ -1,5 +1,19 @@
 #include "converter.hpp"
 #include <iostream>
+#include <iostream>
+#include <iomanip>
+#include <cstdlib>
+#include <limits>
+bool isInfiniteDouble(double x)
+{
+    return x == std::numeric_limits<double>::infinity() ||
+           x == -std::numeric_limits<double>::infinity();
+}
+bool isInfinite(float x)
+{
+    return x == std::numeric_limits<float>::infinity() ||
+           x == -std::numeric_limits<float>::infinity();
+}
 int countChar(const std::string &str, char target)
 {
     int count = 0;
@@ -19,7 +33,8 @@ bool isValidNumber(const std::string &inpute)
     {
         if (float_flag)
             return false;
-        if (!isalnum(inpute[i]) && inpute[i] != '.' && inpute[i] != 'f')
+        if (!isalnum(inpute[i]) && inpute[i] != '.' && inpute[i] != 'f' &&
+            inpute[i] != '-' && inpute[i] != '+')
             return false;
         if (inpute[i] == 'f')
             float_flag = 1;
@@ -38,7 +53,6 @@ bool isScienceType(const std::string &inpute)
 }
 enum types inputType(const std::string &inpute)
 {
-
     if (inpute.empty())
         return invalid_type;
     int dotcount = 0;
@@ -80,18 +94,22 @@ void ConvertChar(const std::string &inpute)
     else
         std::cout << "Non displayable" << std::endl;
 }
-#include <iostream>
-#include <iomanip>  // C++98 standard header
-#include <cstdlib>  // for atoll (or use atol in C++98)
-
 void ConvertInt(const std::string &inpute)
 {
-    long long num = std::atoll(inpute.c_str());
-    
+    char *end;
+    errno = 0;
+    long num = std::strtol(inpute.c_str(), &end, 10);
+    if (errno == ERANGE) {
+        std::cout << "char: Impossible" << std::endl;
+        std::cout << "int: Impossible" << std::endl;
+        std::cout << "float: Impossible" << std::endl;
+        std::cout << "double: Impossible" << std::endl;
+        return;
+    }
     std::cout << "char: ";
-    if(num > 0 && num < 127)
+    if (num > 0 && num < 127)
     {
-        if(isprint(num))
+        if (isprint(num))
         {
             std::cout << "'" << static_cast<char>(num) << "'" << std::endl;
         }
@@ -100,27 +118,26 @@ void ConvertInt(const std::string &inpute)
     }
     else
         std::cout << "Impossible" << std::endl;
-        
+
     std::cout << "int: ";
-    if(num > MAX_INT || num < MIN_INT)
-         std::cout << "Impossible" << std::endl;
+    if (num > MAX_INT || num < MIN_INT)
+        std::cout << "Impossible" << std::endl;
     else
         std::cout << static_cast<int>(num) << std::endl;
-        
-    std::cout << "float: " << std::fixed << std::setprecision(1) 
+
+    std::cout << "float: " << std::fixed << std::setprecision(1)
               << static_cast<float>(num) << "f" << std::endl;
-              
-    std::cout << "double: " << std::fixed << std::setprecision(1) 
+
+    std::cout << "double: " << std::fixed << std::setprecision(1)
               << static_cast<double>(num) << std::endl;
 }
 void ConvertFloat(const std::string &inpute)
 {
     double num = std::atof(inpute.c_str());
-    
     std::cout << "char: ";
-    if(num > 0 && num < 127)
+    if (num > 0 && num < 127)
     {
-        if(isprint(num))
+        if (isprint(num))
         {
             std::cout << "'" << static_cast<char>(num) << "'" << std::endl;
         }
@@ -129,18 +146,24 @@ void ConvertFloat(const std::string &inpute)
     }
     else
         std::cout << "Impossible" << std::endl;
-        
+
     std::cout << "int: ";
-    if(num > MAX_FLOAT || num < MIN_FLOAT)
-         std::cout << "Impossible" << std::endl;
+    if (static_cast<long>(num) > MAX_INT || static_cast<long>(num) < MIN_INT)
+        std::cout << "Impossible" << std::endl;
     else
         std::cout << static_cast<int>(num) << std::endl;
-        
-    std::cout << "float: " << std::fixed << std::setprecision(4) 
-              << static_cast<float>(num) << "f" << std::endl;
-              
-    std::cout << "double: " << std::fixed << std::setprecision(4) 
-              << static_cast<double>(num) << std::endl;
+    std::cout << "float: ";
+    if (num > MAX_FLOAT || num < MIN_FLOAT)
+        std::cout << "Impossible" << std::endl;
+    else
+        std::cout << std::fixed << std::setprecision(4)
+                  << static_cast<float>(num) << "f" << std::endl;
+    std::cout << "double: ";
+    if (isInfiniteDouble(num))
+        std::cout << "Impossible" << std::endl;
+    else
+        std::cout << std::fixed << std::setprecision(4)
+                  << static_cast<double>(num) << std::endl;
 }
 
 int main(int arc, char **argv)
@@ -149,7 +172,7 @@ int main(int arc, char **argv)
     types s = inputType(str);
     if (s == char_type)
     {
-       ConvertChar(str);
+        ConvertChar(str);
     }
     if (s == int_type)
     {
@@ -157,11 +180,11 @@ int main(int arc, char **argv)
     }
     if (s == float_type)
     {
-       ConvertFloat(str);
+        ConvertFloat(str);
     }
     if (s == double_type)
     {
-        std::cout << "its double\n";
+        ConvertFloat(str);
     }
     if (s == science_type)
     {
