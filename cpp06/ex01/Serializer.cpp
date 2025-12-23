@@ -25,3 +25,7 @@ Data* Serializer::deserialize(uintptr_t raw)
 
     return data;
 }
+Serializer::~Serializer()
+{
+    std::cout<<"Serializer destructor has been called"<<std::endl;
+}

@@ -5,6 +5,7 @@ int main()
     Data *origin = &data;
     uintptr_t data_t = Serializer::serialize(&data);
     Data *dserialized = Serializer::deserialize(data_t);
+
     if(dserialized == origin)
         std::cout<<"true";
     else
