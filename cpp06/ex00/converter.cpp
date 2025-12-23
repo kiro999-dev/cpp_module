@@ -66,8 +66,11 @@ enum types inputType(const std::string &inpute)
         return invalid_type;
     if (dotCount == 1 && fCount == 0)
         return valid_type;
+    if (dotCount == 1 && fCount == 1 && (inpute[0] == '+' || inpute[0] == '-'))
+        return (inpute.length() == 3) ? invalid_type : valid_type;
     if (dotCount == 1 && fCount == 1)
         return (inpute.length() == 2) ? invalid_type : valid_type;
+   
     if (dotCount == 0 && fCount == 0)
         return valid_type;
     return invalid_type;
