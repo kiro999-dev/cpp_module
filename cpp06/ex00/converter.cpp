@@ -50,92 +50,49 @@ bool   isScienceType(const std::string &inpute)
     }
     return false;
 }
-enum types  inputType(const std::string &inpute)
+enum types inputType(const std::string &inpute)
 {
     if (inpute.empty())
         return invalid_type;
-    int dotcount = 0;
-    int fcount = 0;
     if (inpute.size() == 1)
         return char_type;
     if (isScienceType(inpute))
         return science_type;
     if (!isValidNumber(inpute))
         return invalid_type;
-    dotcount = countChar(inpute, '.');
-    fcount = countChar(inpute, 'f');
-    if (dotcount > 1 || fcount > 1)
+    int dotCount = countChar(inpute, '.');
+    int fCount   = countChar(inpute, 'f');
+    if (dotCount > 1 || fCount > 1)
         return invalid_type;
-    else if (dotcount == 1 && fcount == 0)
-        return double_type;
-    else if (fcount == 1 && dotcount == 1)
-    {
-        if (inpute.length() == 2)
-            return invalid_type;
-        else
-            return float_type;
-    }
-    else if (fcount == 0 && dotcount == 0)
-        return int_type;
+    if (dotCount == 1 && fCount == 0)
+        return valid_type;
+    if (dotCount == 1 && fCount == 1)
+        return (inpute.length() == 2) ? invalid_type : valid_type;
+    if (dotCount == 0 && fCount == 0)
+        return valid_type;
     return invalid_type;
 }
+
 void static ConvertChar(const std::string &inpute)
 {
     char c = inpute[0];
     std::cout << "char: ";
+    if(isdigit(c))
+        c -='0'; 
     if (isprint(c))
-    {
         std::cout << "'" << c << "'" << std::endl;
-        std::cout << "int: " << static_cast<int>(c) << std::endl;
-        std::cout << "float: " << static_cast<float>(c) << ".0f" << std::endl;
-        std::cout << "double: " << static_cast<double>(c) << ".0" << std::endl;
-    }
     else
         std::cout << "Non displayable" << std::endl;
+    std::cout << "int: " << static_cast<int>(c) << std::endl;
+    std::cout << "float: " << static_cast<float>(c) << ".0f" << std::endl;
+    std::cout << "double: " << static_cast<double>(c) << ".0" << std::endl;
 }
-void static ConvertInt(const std::string &inpute)
-{
-    char *end;
-    errno = 0;
-    long num = std::strtol(inpute.c_str(), &end, 10);
-    if (errno == ERANGE)
-    {
-        std::cout << "char: impossible" << std::endl;
-        std::cout << "int: impossible" << std::endl;
-        std::cout << "float: impossible" << std::endl;
-        std::cout << "double: impossible" << std::endl;
-        return;
-    }
-    std::cout << "char: ";
-    if (num >= 0 && num <= 127)
-    {
-        if (isprint(num))
-        {
-            std::cout << "'" << static_cast<char>(num) << "'" << std::endl;
-        }
-        else
-            std::cout << "Non displayable" << std::endl;
-    }
-    else
-        std::cout << "impossible" << std::endl;
 
-    std::cout << "int: ";
-    if (num > MAX_INT || num < MIN_INT)
-        std::cout << "impossible" << std::endl;
-    else
-        std::cout << static_cast<int>(num) << std::endl;
-
-    std::cout << "float: " << std::fixed << std::setprecision(1)
-              << static_cast<float>(num) << "f" << std::endl;
-
-    std::cout << "double: " << std::fixed << std::setprecision(1)
-              << static_cast<double>(num) << std::endl;
-}
-void static ConvertFloat(const std::string &inpute)
+void static ConvertInput(const std::string &inpute)
 {
     double num = std::atof(inpute.c_str());
     std::cout << "char: ";
-    if (num >= 0 && num <= 127)
+    if (num >= 0 && num <= 255)
     {
         if (isprint(num))
             std::cout << "'" << static_cast<char>(num) << "'" << std::endl;
@@ -196,14 +153,8 @@ void converter(const std::string &str)
     case char_type:
         ConvertChar(str);
         break;
-    case int_type:
-        ConvertInt(str);
-        break;
-    case float_type:
-        ConvertFloat(str);
-        break;
-    case double_type:
-        ConvertFloat(str);
+    case valid_type:
+        ConvertInput(str);
         break;
     case science_type:
         convertScience(str);

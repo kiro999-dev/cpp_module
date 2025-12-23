@@ -12,11 +12,9 @@
 enum types
 {
     char_type = 1,
-    int_type = 2,
-    float_type = 3,
-    double_type = 4,
-    invalid_type =5,
-    science_type = 6
+    valid_type = 2,
+    invalid_type =3,
+    science_type = 4
 };
 void converter(const std::string &str);
 #endif
