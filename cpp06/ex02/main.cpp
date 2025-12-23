@@ -61,7 +61,7 @@ int main()
 {
     Base *ptr = generate();
     identify(ptr);
-    B aclass;
-    identify(aclass);
+    B Binstance;
+    identify(Binstance);
     delete ptr;
 }
