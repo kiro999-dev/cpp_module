@@ -2,6 +2,7 @@
 #define DATA
 struct Data
 {
+    char c;
     int data;
 };
 
