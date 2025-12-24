@@ -2,11 +2,12 @@
 #include "A.hpp"
 #include "B.hpp"
 #include "C.hpp"
+#include <cstdlib>
 Base * generate(void)
 {
-    srand(static_cast<unsigned int>(time(nullptr)));
+    
     Base *ptr;
-    int random = rand();
+    int random = std::rand();
     if(random % 3 == 0)
     {
         ptr = new A;
@@ -59,6 +60,7 @@ void identify(Base& p)
 }
 int main()
 {
+    std::srand(static_cast<unsigned int>(time(NULL)));
     Base *ptr = generate();
     identify(ptr);
     B Binstance;
