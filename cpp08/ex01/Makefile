@@ -1,12 +1,12 @@
 CXX     = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror 
 
-NAME    = typeof
+NAME    = main
 
-SRC     = main.cpp Base.cpp
+SRC     = main.cpp  Span.cpp
 OBJ     = $(SRC:.cpp=.o)
 
-HEADERS = A.hpp B.hpp C.hpp Base.hpp 
+HEADERS = Span.hpp
 
 all: $(NAME)
 
