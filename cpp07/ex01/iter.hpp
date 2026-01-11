@@ -1,11 +1,13 @@
 #ifndef ITER
 #define ITER
-template<typename array,typename size,typename func>
-void iter(array &arr,const size si,func function)
+#include <iostream>
+template<typename T, typename Func>
+void iter(T* arr, size_t size, Func function)
 {
-    for (size i = 0; i < si; i++)
+    for (size_t i = 0; i < size; i++)
     {
         function(arr[i]);
     }
 }
+
 #endif

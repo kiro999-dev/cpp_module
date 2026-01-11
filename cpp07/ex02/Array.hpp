@@ -17,9 +17,10 @@ public:
     Array(unsigned int n);
     Array(const Array &obj);
     const Array &operator=(const Array &obj);
-     T &operator[](unsigned int indx) const;
+     T &operator[](unsigned int indx) ;
+     const T& operator[](unsigned int indx) const;
     ~Array();
-    unsigned int size();
+     unsigned int size() const ;
 };
 
 template<class T>
@@ -39,7 +40,7 @@ Array<T>::Array(const Array &obj)
    }
 }
 template<class T>
-const Array<T> &Array<T>::Array::operator=(const Array &obj)
+const Array<T> &Array<T>::operator=(const Array &obj)
 {
     if(this == &obj)
         return *this;
@@ -58,7 +59,14 @@ const char *Array<T>::OutofBoundException::what() const throw()
     return "index is out of bound";
 }
 template<class T>
- T &Array<T>::operator[](unsigned int indx) const
+T &Array<T>::operator[](unsigned int indx) 
+{
+    if(indx >= n)
+        throw Array::OutofBoundException();
+    return elem[indx];
+}
+template<class T>
+const T &Array<T>::operator[](unsigned int indx) const
 {
     if(indx >= n)
         throw Array::OutofBoundException();
@@ -72,7 +80,7 @@ Array<T>::Array(unsigned int n)
     elem = new T[n];
 }
 template<class T>
-unsigned int Array<T>::size()
+ unsigned int Array<T>::size() const
 {
     return n;
 }
