@@ -62,14 +62,14 @@ template<class T>
 T &Array<T>::operator[](unsigned int indx) 
 {
     if(indx >= n)
-        throw Array::OutofBoundException();
+        throw OutofBoundException();
     return elem[indx];
 }
 template<class T>
 const T &Array<T>::operator[](unsigned int indx) const
 {
     if(indx >= n)
-        throw Array::OutofBoundException();
+        throw OutofBoundException();
     return elem[indx];
 }
 

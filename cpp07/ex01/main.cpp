@@ -1,18 +1,20 @@
 #include "iter.hpp"
 
-void printString(std::string s)
+void printString(const std::string &s)
 {
     std::cout<<s<<std::endl;
 }
-void printInt(int val)
+void editSring(std::string &s)
 {
-    std::cout<<val<<" ";
+  
+    s +=" (Edited)\n";
+    std::cout<<s;
 }
 int main()
 {
     const std::string strings[4] = {"hello","bro","how","!"};
-    const int arr[5] = {1,2,54,6,5};
+    std::string s[4] = {"hello","bro","how","!"};
     ::iter(strings,4,printString);
-    ::iter(arr,5,printInt);
+    ::iter(s,4,editSring);
     std::cout<<std::endl;
 }
