@@ -16,7 +16,7 @@ public:
     Array();
     Array(unsigned int n);
     Array(const Array &obj);
-    const Array &operator=(const Array &obj);
+    Array &operator=(const Array &obj);
      T &operator[](unsigned int indx) ;
      const T& operator[](unsigned int indx) const;
     ~Array();
@@ -40,7 +40,7 @@ Array<T>::Array(const Array &obj)
    }
 }
 template<class T>
-const Array<T> &Array<T>::operator=(const Array &obj)
+Array<T>& Array<T>::operator=(const Array &obj)
 {
     if(this == &obj)
         return *this;
@@ -69,7 +69,7 @@ template<class T>
 const T &Array<T>::operator[](unsigned int indx) const
 {
     if(indx >= n)
-        throw OutofBoundException();
+        throw ::OutofBoundException();
     return elem[indx];
 }
 
