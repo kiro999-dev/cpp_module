@@ -22,7 +22,15 @@ void BitcoinExchange::MatchDate(Date date, double value)
         std::cout << date.Getdate() << " => " << value << " = " << value * it->second << std::endl;
         return;
     }
+    // std::cout<<it->first.Getdate()<<std::endl;
     --it;
+    // std::cout<<it->first.Getdate()<<std::endl;
+    if (it == db.begin())
+    {
+        std::cout<<"year not available in db\n";
+        return ;
+    }
+    
     std::cout << date.Getdate() << " => " << value << " = " << value * it->second << std::endl;
 }
 BitcoinExchange::BitcoinExchange()

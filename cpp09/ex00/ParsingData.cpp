@@ -25,7 +25,7 @@ int parse_int(const char *str, int *result,int flag)
     char *end;
     long val;
     errno = 0;
-    if(flag && strlen(str) < 2)
+    if((flag == 1 && strlen(str) != 2) || (flag == 2 && strlen(str) < 2))
         return 0;
     val = strtol(str, &end, 10);
     if (errno == ERANGE || val > INT_MAX)
@@ -46,7 +46,7 @@ bool ProcessDate(std::string date,int &yy,int &mm,int &dd)
         std::cerr<<"Error: bad input => "+date<<std::endl;
         return true;
     }
-    if(!parse_int(dateFromat[0].c_str(),&y,1) || 
+    if(!parse_int(dateFromat[0].c_str(),&y,2) || 
     !parse_int(dateFromat[1].c_str(),&m,1) || 
     !parse_int(dateFromat[2].c_str(),&d,1))
     {

@@ -1,5 +1,5 @@
 #include "Date.hpp"
-std::string Date::Getdate()
+std::string Date::Getdate() const
 {
     return date;
 }

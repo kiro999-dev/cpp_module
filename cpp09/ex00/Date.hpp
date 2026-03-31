@@ -21,7 +21,7 @@ public:
     bool isvalidrange();
     bool operator<(const Date &other) const;
     bool operator==(const Date &other) const;
-    std::string Getdate();
+    std::string Getdate() const;
     Date();
     ~Date();
 };
