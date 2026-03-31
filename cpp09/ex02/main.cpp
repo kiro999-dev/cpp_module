@@ -78,18 +78,91 @@ bool isvalid(char *str){
     }
     return true;
 }
-std::vector<int,int>MakePairs(const std::vector<int> &numbersV)
+std::vector<int> jacobSthal(int n)
+{
+    std::vector<int> jacob;
+    std::vector<int> Sq;
+    jacob.push_back(0);
+    jacob.push_back(1);
+    int x = 3;
+    int i = 2;
+    int xprim;
+    while (x <= n)
+    {
+        x = jacob[i-1] + 2*jacob[i-2];
+        jacob.push_back(x);
+        i++;
+    }
+    i = 2;
+    int size = 0;
+    while (size < n)
+    {
+        if(jacob[i] <= n)
+            Sq.push_back(jacob[i]);
+        size++;
+        x = jacob[i];
+        xprim = jacob[i-1] + 1;
+        while (x > xprim)
+        {
+            size++;
+            x--;
+            if(x <= n)
+                Sq.push_back(x);
+        }
+        i++;
+    }
+    
+    return Sq;
+}
+
+std::vector<int> Ford_jhonson(std::vector<int> &numbersV)
 {
     int leftover = -1;
     std::vector<std::pair<int,int>> pairs;
-
+    std::vector<int> pend;
+    std::vector<int> mc;
+    std::vector<int> Sq;
+    if(numbersV.size() == 1)
+        return numbersV;
     for (size_t i = 0; i + 1 < numbersV.size(); i += 2)
     {
-        pairs.push_back({numbersV[i], numbersV[i+1]});
+        if(numbersV[i] < numbersV[i+1])
+            pairs.push_back({numbersV[i], numbersV[i+1]});
+        else
+            pairs.push_back({numbersV[i+1], numbersV[i]});
     }
-
     if (numbersV.size() % 2 != 0)
         leftover = numbersV.back();
+    for (size_t i = 0; i < pairs.size(); i++)
+    {
+        mc.push_back(pairs[i].second);
+        pend.push_back(pairs[i].first);
+    
+    }
+    mc =  Ford_jhonson(mc);
+    Sq = jacobSthal(pend.size());
+    int idx = 0;
+    for (size_t i = 0; i < Sq.size(); i++)
+    {
+        
+        if(Sq.size() > 2)
+            idx = Sq[i]-1;
+        else
+            idx = i;
+        if (idx < (int)pend.size())
+        {
+
+            std::vector<int>::iterator it = std::lower_bound(mc.begin(), mc.end(), pend[idx]);
+            mc.insert(it, pend[idx]);
+        }
+    }
+    if(leftover!=-1)
+    {
+        std::vector<int>::iterator it = std::lower_bound(mc.begin(),mc.end(),leftover);
+        mc.insert(it,leftover);
+    }
+   
+    return mc;
 }
 int main(int argc ,char **argv)
 {
@@ -109,6 +182,8 @@ int main(int argc ,char **argv)
        i++;
     }
     i = 0;
+
+   numbersV =  Ford_jhonson(numbersV);
     while (i < numbersV.size())
     {
         std::cout<<numbersV[i]<<" ";
