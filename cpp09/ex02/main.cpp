@@ -4,6 +4,7 @@
 #include <sstream>
 #include <stdlib.h>
 #include <deque>
+#include <algorithm>
 std::vector<std::string> splitString(const std::string& str, char delimiter) {
     std::vector<std::string> tokens;
     std::stringstream ss(str);
@@ -119,11 +120,12 @@ std::vector<int> Ford_jhonson(std::vector<int> &numbersV)
 {
     int leftover = -1;
     std::vector<std::pair<int,int>> pairs;
-    std::vector<int> pend;
+    std::vector<std::pair<int,int>> pend;
     std::vector<int> mc;
     std::vector<int> Sq;
     if(numbersV.size() == 1)
         return numbersV;
+
     for (size_t i = 0; i + 1 < numbersV.size(); i += 2)
     {
         if(numbersV[i] < numbersV[i+1])
@@ -131,29 +133,47 @@ std::vector<int> Ford_jhonson(std::vector<int> &numbersV)
         else
             pairs.push_back({numbersV[i+1], numbersV[i]});
     }
+    for (size_t i = 0; i < pairs.size(); i++)
+    {
+        std::cout<<"["<<pairs[i].first<<", "<<pairs[i].second<<"] "; 
+    }
+    std::cout<<"\n";
     if (numbersV.size() % 2 != 0)
         leftover = numbersV.back();
+
     for (size_t i = 0; i < pairs.size(); i++)
     {
         mc.push_back(pairs[i].second);
-        pend.push_back(pairs[i].first);
-    
+        pend.push_back({pairs[i].second,pairs[i].first});
     }
-    mc =  Ford_jhonson(mc);
+   
+    mc = Ford_jhonson(mc);
+    std::cout<<"new Main"<<":[";
+    for (size_t i = 0; i < mc.size(); i++)
+    {
+        std::cout<<mc[i]<<" ";
+    }
+    std::cout<<"]\n";
+    std::cout<<"new Pend"<<":[";
+    std::sort(pend.begin(),pend.end());
+    for (size_t i = 0; i < pend.size(); i++)
+    {
+        std::cout<<pend[i].second<<" ";
+    }
+    std::cout<<"]\n";
     Sq = jacobSthal(pend.size());
     int idx = 0;
     for (size_t i = 0; i < Sq.size(); i++)
     {
-        
         if(Sq.size() > 2)
             idx = Sq[i]-1;
         else
             idx = i;
+       
         if (idx < (int)pend.size())
         {
-
-            std::vector<int>::iterator it = std::lower_bound(mc.begin(), mc.end(), pend[idx]);
-            mc.insert(it, pend[idx]);
+           std::vector<int>::iterator it = std::lower_bound(mc.begin(), mc.end(), pend[idx].second);
+            mc.insert(it, pend[idx].second);
         }
     }
     if(leftover!=-1)
@@ -161,8 +181,9 @@ std::vector<int> Ford_jhonson(std::vector<int> &numbersV)
         std::vector<int>::iterator it = std::lower_bound(mc.begin(),mc.end(),leftover);
         mc.insert(it,leftover);
     }
-   
+  
     return mc;
+   
 }
 int main(int argc ,char **argv)
 {
@@ -183,7 +204,7 @@ int main(int argc ,char **argv)
     }
     i = 0;
 
-   numbersV =  Ford_jhonson(numbersV);
+    numbersV =  Ford_jhonson(numbersV);
     while (i < numbersV.size())
     {
         std::cout<<numbersV[i]<<" ";
