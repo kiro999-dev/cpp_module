@@ -25,14 +25,14 @@ void BitcoinExchange::MatchDate(Date date, double value)
     --it;
     std::cout << date.Getdate() << " => " << value << " = " << value * it->second << std::endl;
 }
-BitcoinExchange::BitcoinExchange(const BitcoinExchange &obj)
-{
-}
-
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &obj) : db(obj.db)
 {
 }
+BitcoinExchange::BitcoinExchange()
+{}
+BitcoinExchange::~BitcoinExchange()
+{}
 
 
 BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &obj)

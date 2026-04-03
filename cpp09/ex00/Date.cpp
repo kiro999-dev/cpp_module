@@ -24,7 +24,7 @@ Date &Date::operator=(const Date &other)
 }
 bool Date::isvalidrange()
 {
-    if(year  < 2009 && day < 2)
+    if(year  < 2009 )
     {
         return false;
     }
