@@ -14,7 +14,7 @@ std::map<int ,std::string> splitString(const std::string& str, char delimiter) {
   std::string token;
   int i = 0;
   while (std::getline(ss, token, delimiter)) {
-      tokens.insert({i,token});
+      tokens.insert(std::make_pair(i,token));
       i++;
   }
   return tokens;
@@ -83,6 +83,7 @@ float parse_float(const char *str, float *res,int flag)
 
     errno = 0;
     val = strtof(str, &end);
+
     if(flag && strlen(str) < 2)
     {
         return 0;
@@ -106,7 +107,10 @@ bool ProcessValue(std::string s)
     float val;
     if(!parse_float(s.c_str(),&val,0) || val > 1000)
     {
-        std::cerr<<"Error: too large a number"<<std::endl;
+        if(val == 0)
+            std::cerr<<"Error: bad input => "+s<<std::endl;
+        else
+            std::cerr<<"Error: too large a number"<<std::endl;
         return true; 
     }
     else if(val < 0)

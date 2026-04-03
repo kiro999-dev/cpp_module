@@ -11,19 +11,21 @@
 class Date
 {
 private:
-   std::string date;
-   long year;
-   short month;
-   short day;
+    std::string date;
+    long year;
+    short month;
+    short day;
 public:
-    Date(long,short,short,std::string);
+    Date(long, short, short, std::string);
+    Date();
+    Date(const Date &other);             
+    Date &operator=(const Date &other); 
+    ~Date();
     bool IsValidDate();
     bool isvalidrange();
     bool operator<(const Date &other) const;
     bool operator==(const Date &other) const;
     std::string Getdate() const;
-    Date();
-    ~Date();
 };
 
 #endif
