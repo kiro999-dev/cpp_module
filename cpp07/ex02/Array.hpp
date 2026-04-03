@@ -1,6 +1,8 @@
 #ifndef ARRAY_HPP
 #define ARRAY_HPP
 #include <exception>
+#include <cstdlib>
+
 template<class T>
 class Array
 {
@@ -69,7 +71,7 @@ template<class T>
 const T &Array<T>::operator[](unsigned int indx) const
 {
     if(indx >= n)
-        throw ::OutofBoundException();
+        throw OutofBoundException();
     return elem[indx];
 }
 

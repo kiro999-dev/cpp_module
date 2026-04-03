@@ -1,12 +1,12 @@
 CXX     = c++
-CXXFLAGS = -Wall -Wextra -Werror 
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 NAME    = main
 
 SRC     = main.cpp 
 OBJ     = $(SRC:.cpp=.o)
 
-HEADERS = Array.hpp
+HEADERS = Array.hpp++
 
 all: $(NAME)
 
