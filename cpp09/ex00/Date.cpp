@@ -3,6 +3,9 @@ std::string Date::Getdate() const
 {
     return date;
 }
+Date::Date(long y,short m ,short d ,std::string ddate):date(ddate),year(y),month(m),day(d)
+{
+}
 Date::Date(const Date &other)
     : date(other.date), year(other.year), month(other.month), day(other.day)
 {
@@ -46,7 +49,13 @@ bool Date::IsValidDate()
   return day <= maxDay;
 
 }
+Date::Date()
+{
+}
 
+Date::~Date()
+{
+}
 bool Date::operator<(const Date &other) const
 {
     if (year != other.year) return year < other.year;
@@ -56,7 +65,4 @@ bool Date::operator<(const Date &other) const
 bool Date::operator==(const Date &other) const
 {
     return year == other.year && month == other.month && day == other.day;
-}
-Date::~Date()
-{
 }
