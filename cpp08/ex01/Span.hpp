@@ -17,7 +17,7 @@ public:
     Span(const Span &obj);
     const Span& operator=(const Span &obj);
     void addNumber(int number);
-    void addNumbers(std::vector<int> numbers);
+    void addNumbers(std::vector<int>::iterator it1,std::vector<int>::iterator it2);
     int shortestSpan();
     int longestSpan();
     ~Span();

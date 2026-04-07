@@ -1,7 +1,7 @@
 #include "Span.hpp"
 int Span::shortestSpan()
 {
-    if(size <=1)
+    if(elm_count <=1)
         throw std::runtime_error("no span can be found");
     std::vector<int>::iterator it = span.begin();
     int min = std::numeric_limits<int>::max();
@@ -15,7 +15,7 @@ int Span::shortestSpan()
 }
 int Span::longestSpan()
 {
-    if(size <=1)
+    if(elm_count <=1)
         throw std::runtime_error("no span can be found");
     std::vector<int>::iterator it = span.begin();
     int max = std::numeric_limits<int>::min();
@@ -27,9 +27,9 @@ int Span::longestSpan()
     }
     return max;
 }
-void Span::addNumbers(std::vector<int> numbers)
+void Span::addNumbers(std::vector<int>::iterator it1,std::vector<int>::iterator it2)
 {
-    for (std::vector<int>::iterator it = numbers.begin(); it != numbers.end(); it++)
+    for (std::vector<int>::iterator it = it1; it != it2; it++)
     {
        addNumber(*it);
     }
