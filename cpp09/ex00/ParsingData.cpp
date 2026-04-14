@@ -1,5 +1,4 @@
 #include "main.hpp"
-
 #include "BitcoinExchange.hpp"
 int strlen(const char *s)
 {
@@ -25,7 +24,7 @@ int parse_int(const char *str, int *result,int flag)
     char *end;
     long val;
     errno = 0;
-    if((flag == 1 && strlen(str) != 2) || (flag == 2 && strlen(str) < 2))
+    if((flag == 1 && strlen(str) != 2))
         return 0;
     val = strtol(str, &end, 10);
     if (errno == ERANGE || val > INT_MAX)
@@ -43,20 +42,20 @@ bool ProcessDate(std::string date,int &yy,int &mm,int &dd)
     std::map<int ,std::string> dateFromat = splitString(date,'-');
     if(dateFromat.size() != 3)
     {
-        std::cerr<<"Error: bad input => "+date<<std::endl;
+        std::cout<<"Error: bad input => "+date<<std::endl;
         return true;
     }
     if(!parse_int(dateFromat[0].c_str(),&y,2) || 
     !parse_int(dateFromat[1].c_str(),&m,1) || 
     !parse_int(dateFromat[2].c_str(),&d,1))
     {
-        std::cerr<<"Error: bad input => "+date<<std::endl;
+        std::cout<<"Error: bad input => "+date<<std::endl;
         return true;
     }
     Date format(y,m,d,date);
-    if(!format.IsValidDate() || !format.isvalidrange())
+    if(!format.IsValidDate())
     {
-        std::cerr<<"Error: bad input => "+date<<std::endl;
+        std::cout<<"Error: bad input => "+date<<std::endl;
         return true;
     }
     yy = y;
@@ -108,14 +107,14 @@ bool ProcessValue(std::string s)
     if(!parse_float(s.c_str(),&val,0) || val > 1000)
     {
         if(val == 0)
-            std::cerr<<"Error: bad input => "+s<<std::endl;
+            std::cout<<"Error: bad input => "+s<<std::endl;
         else
-            std::cerr<<"Error: too large a number"<<std::endl;
+            std::cout<<"Error: too large a number"<<std::endl;
         return true; 
     }
     else if(val < 0)
     {
-        std::cerr<<"Error: not a positive number."<<std::endl;
+        std::cout<<"Error: not a positive number."<<std::endl;
        return true;
     }
     return false;
@@ -129,7 +128,7 @@ void ProcessLine(std::string line, BitcoinExchange &btc)
     static int flag = 0;
     if(data.size() != 3)
     {
-        std::cerr<<"Error: bad input => "+line<<std::endl;
+        std::cout<<"Error: bad input => "+line<<std::endl;
         flag++;
         return;
     }
@@ -138,7 +137,7 @@ void ProcessLine(std::string line, BitcoinExchange &btc)
         if(data[0].compare("date") != 0 
         || data[1].compare("|") !=0 
         || data[2].compare("value") !=0)
-             std::cerr<<"Error: bad input => " + line<<std::endl;
+             std::cout<<"Error: bad input => " + line<<std::endl;
         flag++;
         return;
     }

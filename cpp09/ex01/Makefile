@@ -1,8 +1,6 @@
 CXX     = c++
 CXXFLAGS = -Wall -Wextra -Werror  -std=c++98
-
 NAME    = RPN
-
 SRC     = RPN.cpp main.cpp
 OBJ     = $(SRC:.cpp=.o)
 

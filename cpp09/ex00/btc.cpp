@@ -4,12 +4,12 @@ int main(int argc,char**argv)
 {
     if(argc  < 2)
     {
-       std::cerr<< "Error: could not open file"<<std::endl;
+       std::cout<< "Error: could not open file"<<std::endl;
        return 1;
     }
     std::ifstream csv("data.csv");
     if (!csv.is_open()) {
-        std::cerr << "Error opening file!" << std::endl;
+        std::cout << "Error opening file!" << std::endl;
         return 1;
     }
     std::string line;
@@ -21,14 +21,19 @@ int main(int argc,char**argv)
 
     std::ifstream inpute(argv[1]);
     if (!inpute.is_open()) {
-        std::cerr << "Error opening file!" << std::endl;
+        std::cout << "Error opening file!" << std::endl;
         return 1;
     }
+    int flag = 0;
     while (std::getline(inpute,line))
     {
+        flag = 1;
         ProcessLine(line,btc);
     }
-
- 
+    if(!flag)
+    {
+        std::cout << "Error empty file!" << std::endl;
+        return 1;
+    }
     
 }
