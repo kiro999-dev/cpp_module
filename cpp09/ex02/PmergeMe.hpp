@@ -9,6 +9,8 @@
 #include <algorithm>
 #include <sys/time.h>
 #include <cerrno>
+
+bool isSorted(const std::vector<int>& arr);
 int parse_int(const char *str, int *result);
 std::vector<std::string> splitString(const std::string &str, char delimiter);
 std::deque<int> Ford_jhonson_D(std::deque<int> &numbersD);

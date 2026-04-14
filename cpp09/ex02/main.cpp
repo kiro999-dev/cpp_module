@@ -51,6 +51,7 @@ void DequeResult(std::deque<int> &numbersD)
 }
 int main(int argc, char **argv)
 {
+
     if (argc < 2)
     {
         std::cerr << "Error\n";
@@ -68,6 +69,11 @@ int main(int argc, char **argv)
         if (!FillContainer(numbersD, argv[i]))
             return error();
         i++;
+    }
+    if(isSorted(numbersV))
+    {
+        std::cout<<"the numbers are sorted :)"<<std::endl;
+        return 0;
     }
     VectorResult(numbersV);
     DequeResult(numbersD);
