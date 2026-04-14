@@ -10,7 +10,7 @@
 #include <sys/time.h>
 #include <cerrno>
 
-bool isSorted(const std::vector<int>& arr);
+bool isSorted(const std::vector<int> &arr);
 int parse_int(const char *str, int *result);
 std::vector<std::string> splitString(const std::string &str, char delimiter);
 std::deque<int> Ford_jhonson_D(std::deque<int> &numbersD);
@@ -25,10 +25,10 @@ void PrintContainer(C numbers)
     }
     std::cout << "\n";
 }
-template<typename C>
+template <typename C>
 C jacobSthal(int n)
 {
-    typedef typename C::value_type T; 
+    typedef typename C::value_type T;
 
     C jacob;
     C Sq;
@@ -51,14 +51,17 @@ C jacobSthal(int n)
         if (jacob[i] <= n)
             Sq.push_back(jacob[i]);
         size++;
-        x = jacob[i];
-        xprim = jacob[i - 1] + 1;
-        while (x > xprim)
+        if (jacob.size() > (size_t)i)
         {
-            size++;
-            x--;
-            if (x <= n)
-                Sq.push_back(x);
+            x = jacob[i];
+            xprim = jacob[i - 1] + 1;
+            while (x > xprim)
+            {
+                size++;
+                x--;
+                if (x <= n)
+                    Sq.push_back(x);
+            }
         }
         i++;
     }
