@@ -19,7 +19,7 @@ int RPN(std::string str)
 
         if (c == ' ')
             continue;
-        else if (isdigit(c))
+        else if (isdigit(c) &&  (i  == 0 || str[i-1] == ' '))
         {
             s.push(c - '0');
             counter++;
