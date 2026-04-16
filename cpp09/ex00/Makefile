@@ -3,7 +3,7 @@ CXXFLAGS = -Wall -Wextra -Werror  -std=c++98
 
 NAME    = btc
 
-SRC     = btc.cpp ParsingData.cpp BitcoinExchange.cpp Date.cpp
+SRC     = main.cpp ParsingData.cpp BitcoinExchange.cpp Date.cpp
 OBJ     = $(SRC:.cpp=.o)
 
 HEADERS = Date.hpp BitcoinExchange.hpp  main.hpp
