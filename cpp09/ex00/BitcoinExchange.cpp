@@ -1,9 +1,18 @@
 #include "BitcoinExchange.hpp"
+#include <iomanip>
 
 void BitcoinExchange::ParsData(std::string str)
 {
+    static int i = 0;
     std::map<int,std::string> data = splitString(str,',');
     std::map<int ,std::string> dateFromat = splitString(data[0],'-');
+    if(i == 0)
+    {
+        Date date(0,0,0,"0-00-00");
+        db.insert(std::make_pair(date,0));
+        i++;
+        return;
+    }
     int y,m,d;
     double value;
     value = std::atof(data[1].c_str());
@@ -19,11 +28,11 @@ void BitcoinExchange::MatchDate(Date date, double value)
 
     if (it != db.end() && it->first == date)
     {
-        std::cout << date.Getdate() << " => " << value << " = " << value * it->second << std::endl;
+        std::cout << date.Getdate() << " => " << value << " = " << std::fixed << std::setprecision(2) << value * it->second << std::endl;
         return;
     }
     --it;
-    std::cout << date.Getdate() << " => " << value << " = " << value * it->second << std::endl;
+    std::cout << date.Getdate() << " => " << value << " = " << std::fixed << std::setprecision(2) << value * it->second << std::endl;
 }
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &obj) : db(obj.db)

@@ -90,7 +90,7 @@ float parse_float(const char *str, float *res, int flag)
     }
     if (errno == ERANGE)
     {
-        *res = 0.0f;
+        *res = 1;
         return 0;
     }
 
@@ -137,12 +137,17 @@ void ProcessLine(std::string line, BitcoinExchange &btc)
     }
     if (flag == 0)
     {
-        if (data[0].compare("date") != 0 || data[1].compare("|") != 0 || data[2].compare("value") != 0)
+        if (data[0] != "date"  || data[1] != "|"  || data[2]!= "value")
             std::cout << "Error: bad input => " + line << std::endl;
         flag++;
         return;
     }
     value = std::atof(data[2].c_str());
+    if(data[1] !="|")
+    {
+        std::cout << "Error: bad input => " + line << std::endl;
+        return;
+    }
     if (ProcessDate(data[0], y, m, d) || ProcessValue(data[2]))
         return;
     btc.MatchDate(Date(y, m, d, data[0]), value);

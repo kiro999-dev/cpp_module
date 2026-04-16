@@ -16,18 +16,19 @@ int main(int argc,char**argv)
         std::cout << "Error opening file!" << std::endl;
         return 1;
     }
-    std::string line;
-    BitcoinExchange btc;
-    while (std::getline(csv,line))
-    {
-        btc.ParsData(line);
-    }
 
     std::ifstream inpute(argv[1]);
     if (!inpute.is_open()) {
         std::cout << "Error opening file!" << std::endl;
         return 1;
     }
+
+    std::string line;
+    BitcoinExchange btc;
+    while (std::getline(csv,line)) {
+        btc.ParsData(line);
+    }
+
     int flag = 0;
     while (std::getline(inpute,line))
     {
