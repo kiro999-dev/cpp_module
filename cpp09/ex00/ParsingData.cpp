@@ -141,7 +141,7 @@ void ProcessLine(std::string line, BitcoinExchange &btc)
         flag++;
         return;
     }
-    value = atof(data[2].c_str());
+    value = std::atof(data[2].c_str());
     if(ProcessDate(data[0],y,m,d) || ProcessValue(data[2]))
         return;
     btc.MatchDate(Date(y,m,d,data[0]),value);

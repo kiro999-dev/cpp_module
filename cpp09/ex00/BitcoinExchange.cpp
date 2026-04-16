@@ -6,10 +6,10 @@ void BitcoinExchange::ParsData(std::string str)
     std::map<int ,std::string> dateFromat = splitString(data[0],'-');
     int y,m,d;
     double value;
-    value = atof(data[1].c_str());
-    y = atoi(dateFromat[0].c_str());
-    m = atoi(dateFromat[1].c_str());
-    d = atoi(dateFromat[2].c_str());
+    value = std::atof(data[1].c_str());
+    y = std::atoi(dateFromat[0].c_str());
+    m = std::atoi(dateFromat[1].c_str());
+    d = std::atoi(dateFromat[2].c_str());
     Date date(y,m,d,str);
     db.insert(std::make_pair(date,value));
 }
